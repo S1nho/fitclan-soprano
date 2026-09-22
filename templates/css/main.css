@@ -1,0 +1,89 @@
+body {
+    background-color: #1a4375 ;
+     color: blue;
+     margin: 0;
+     padding: 0;
+     }
+
+.hero-container {
+    background: transparent
+    }
+
+.hero-title {
+    color:#ffffff;
+
+    padding: 50px 24px;
+}
+
+.hero-subtitle {
+    color:  yellow;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 12px
+    margin-bottom: 24px;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+.hero-slogan {
+    color: #ffffff;
+    font-size: 48px;
+    font-weight: 800;
+    padding: 0;
+    margin-bottom: 28px
+    max-width: 600px
+}
+
+.hero-text {
+    color: #ffffff;
+    font-size: 21px;
+    padding: 5px 24px;
+}
+
+.hero-buttons {
+    background: #1a4375;
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+
+.btn-first {
+    color: #ffffff;
+    font-size: 19px;
+    font-family: sans-serif;
+    text-decoration: none;    /* Убирает стандартное подчеркивание ссылки */
+    padding: 12px 24px;       /* Внутренние отступы: сверху/снизу и слева/справа */
+    border-radius: 8px;       /* Закругление углов */
+    display: inline-block;    /* Позволяет корректно применять отступы */
+    transition: background 0.3s
+    background-color: transparent;  /* Яркая синяя заливка для первой кнопки */
+    border: 2px solid #ffffff;
+}
+
+.btn-second {
+    color: #ffffff;
+    font-size: 19px;
+    font-family: sans-serif;
+    text-decoration: none;    /* Убирает стандартное подчеркивание ссылки */
+    padding: 12px 24px;       /* Внутренние отступы: сверху/снизу и слева/справа */
+    border-radius: 8px;       /* Закругление углов */
+    display: inline-block;    /* Позволяет корректно применять отступы */
+    transition: background 0.3s
+    background-color: transparent; /* Прозрачный фон, чтобы было видно синий блок сайта */
+    border: 2px solid #ffffff;
+}
+
+.hero-footer {
+    background-color: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая линия разделения */
+    padding-top: 30px;
+    display: flex;
+    gap: 40px;
+}
+
+.Specs {
+    font-size: 17px;
+    color: #ffffff;
+    padding: 5px; 24px
+}
