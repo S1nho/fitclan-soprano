@@ -1,0 +1,99 @@
+body {
+                background-color: #1a4375;
+                color: #ffffff;
+                margin: 0;
+                padding: 0;
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            .headline {
+                text-align: center;
+                color: #ffffff;
+                font-size: 2.8rem;
+                font-weight: 900;
+                text-transform: uppercase;
+                margin-top: 40px;
+                margin-bottom: 20px;
+            }
+
+            .trainers {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+                padding: 20px;
+            }
+
+            .trainers-card {
+
+    background-color: #112d50 !important;
+
+
+    border: none;
+
+    padding: 20px;
+    border-radius: 8px;
+    width: 450px;
+    overflow: auto;
+
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+header {
+    text-align: center;
+    padding-top: 40px;
+}
+
+.fs-4 {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 24px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.12);
+    width: fit-content;
+    color: #ffffff;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    margin: 0 0 24px 0;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+            .trainers-info {
+                color: #ffffff;
+                margin-bottom: 15px;
+                overflow: hidden;
+            }
+
+            .trainers-info h2 {
+                margin: 0 0 5px 0;
+                font-size: 1.6rem;
+            }
+
+            .trainers-info p {
+                margin: 0 0 10px 0;
+                font-weight: bold;
+                color: yellow;
+            }
+
+            .trainers-info ul {
+                margin: 0;
+                padding-left: 25px;
+                list-style-type: disc !important;
+                color: #ffffff;
+                line-height: 1.6;
+            }
+
+            .trainers-info li {
+                margin-bottom: 8px;
+                font-weight: normal !important;
+                color: #ffffff;
+            }

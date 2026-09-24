@@ -1,88 +1,56 @@
 ﻿<!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Расписание — Фитнес-клуб</title>
-    <style>
-        body {
-            background-color: #07240F;
-            color: #D9FCED;
-            font-family: Arial, sans-serif;
-            padding: 30px;
-        }
+    <head>
+        <meta charset="UTF-8">
+        <title>Расписание</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/schedule.css') }}">
+        <link href="https://googleapis.com" rel="stylesheet">
+    </head>
+    <body>
+        <header> 
+            <div class="fs-4"><a href="{{ url_for('index') }}" class="btn-first"><b>Fit-clan Soprano</b></a></div><br>
+            <div class="pricing-header"> 
+            <h1 class="text-body-emphasis">Расписание фитнес-клуба</h1> 
+            <p class="text-body-secondary">Клуб работает ежедневно с <strong>8:00 до 23:00</strong>. Занятия проходят в <strong>14:00</strong> и <strong>19:00</strong>.</p> </div> 
+        </header>    
 
-        h1 {
-            color: #09BBCB;
-            border-bottom: 3px solid #405FFA;
-            padding-bottom: 10px;
-        }
+        <table>
+            <tr>
+                <th>День</th>
+                <th>14:00</th>
+                <th>19:00</th>
+            </tr>
+            <tr>
+                <td>Понедельник</td>
+                <td>Силовая</td>
+                <td>Плавание</td>
+            </tr>
+            <tr>
+                <td>Вторник</td>
+                <td>Пилатес</td>
+                <td>Бокс</td>
+            </tr>
+            <tr>
+                <td>Среда</td>
+                <td>Силовая</td>
+                <td>Плавание</td>
+            </tr>
+            <tr>
+                <td>Четверг</td>
+                <td>Пилатес</td>
+                <td>Бокс</td>
+            </tr>
+            <tr>
+                <td>Пятница</td>
+                <td>Силовая</td>
+                <td>Плавание</td>
+            </tr>
+            <tr>
+                <td>Суббота</td>
+                <td>Пилатес</td>
+                <td>Бокс</td>
+            </tr>
+        </table>
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        th {
-            background-color: #405FFA;
-            color: white;
-            padding: 12px;
-            text-align: left;
-        }
-
-        td {
-            padding: 12px;
-            border: 1px solid #3D3664;
-            color: #D9FCED;
-        }
-
-        tr:hover {
-            background-color: #3B3664;
-        }
-    </style>
-</head>
-<body>
-
-    <h1>Расписание фитнес-клуба</h1>
-    <p>Клуб работает ежедневно с <strong>8:00 до 23:00</strong>. Занятия проходят в <strong>14:00</strong> и <strong>19:00</strong>.</p>
-
-    <table>
-        <tr>
-            <th>День</th>
-            <th>14:00</th>
-            <th>19:00</th>
-        </tr>
-        <tr>
-            <td>Понедельник</td>
-            <td>Силовая</td>
-            <td>Плавание</td>
-        </tr>
-        <tr>
-            <td>Вторник</td>
-            <td>Пилатес</td>
-            <td>Бокс</td>
-        </tr>
-        <tr>
-            <td>Среда</td>
-            <td>Силовая</td>
-            <td>Плавание</td>
-        </tr>
-        <tr>
-            <td>Четверг</td>
-            <td>Пилатес</td>
-            <td>Бокс</td>
-        </tr>
-        <tr>
-            <td>Пятница</td>
-            <td>Силовая</td>
-            <td>Плавание</td>
-        </tr>
-        <tr>
-            <td>Суббота</td>
-            <td>Пилатес</td>
-            <td>Бокс</td>
-        </tr>
-    </table>
-
-</body>
+    </body>
 </html>

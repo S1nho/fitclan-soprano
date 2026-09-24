@@ -72,6 +72,11 @@ body {
     margin-bottom: 40px;
 }
 
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
 .btn-first, .btn-second, .btn-third, .btn-fourth {
     color: #ffffff;
     font-size: 19px;

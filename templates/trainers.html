@@ -3,76 +3,17 @@
     <head>
         <meta charset="utf-8">
         <title>Тренера</title>
-        <style>
-            body {
-                background-color: #07240F;
-                color: #D9FCED;
-                margin: 0;
-                padding: 0;
-            }
-            
-            .headline {
-                text-align: center;
-                color: #09bbc8;
-                font-size: 2.8rem;      
-                font-weight: 900;          
-                text-transform: uppercase;
-                margin-top: 40px;         
-                margin-bottom: 20px;
-            }
-
-            .trainers {
-                display: flex;       
-                flex-wrap: wrap;       
-                gap: 20px;             
-                justify-content: center;
-                padding: 20px;
-            }
-
-            .trainers-card {
-                background-color: #3b3664 !important;
-                padding: 20px;
-                border-radius: 12px;
-                width: 450px;
-                overflow: auto;         
-            }
-
-            .trainers-info {
-                color: #D9FCED;            
-                margin-bottom: 15px;
-                overflow: hidden;
-            }
-
-            .trainers-info h2 {
-                margin: 0 0 5px 0;
-                font-size: 1.6rem;
-            }
-
-            .trainers-info p {
-                margin: 0 0 10px 0;
-                font-weight: bold;
-                color: #09bbc8; 
-            }
-
-            .trainers-info ul {
-                margin: 0;
-                padding-left: 25px;
-                list-style-type: disc !important; 
-                color: #D9FCED;     
-                line-height: 1.6;    
-            }
-
-            .trainers-info li {
-                margin-bottom: 8px;
-                font-weight: normal !important;
-                color: #D9FCED;
-            }
-        </style>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/trainers.css') }}">
+        <link href="https://googleapis.com" rel="stylesheet">
     </head>
     <body>
-        <div class="headline">НАШИ ТРЕНЕРЫ</div>
+        <header> 
+            <div class="fs-4"><a href="{{ url_for('index') }}" class="btn-first"><b>Fit-clan Soprano</b></a></div> 
+            <h1 class="headline">НАШИ ТРЕНЕРЫ</h1> 
+        </header>
+        
 
-        <div class="trainers"> 
+        <div class="trainers">
             <div class="trainers-card">
                 <img src="{{ url_for('static', filename='images/maksim.jpg') }}" alt="Тренер Максим" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
                 <div class="trainers-info">
@@ -102,7 +43,6 @@
                     </ul>
                 </div>
             </div>
-
             <div class="trainers-card">
                 <img src="{{ url_for('static', filename='images/ksen.jpg') }}" alt="Тренер Ксения" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
                 <div class="trainers-info">
@@ -124,7 +64,7 @@
                     <h2>Екатерина</h2>
                     <p>Тренер по плаванию</p>
                     <ul>
-                        <li>Образование: ЛГУ им. Пушкина, факультет «физическая культура»</il>
+                        <li>Образование: ЛГУ им. Пушкина, факультет «физическая культура»</li>
                         <li>Опыт работы: 6 лет</li>
                         <li>Мастер спорта по плаванию</li>
                         <li>Чемпион и призер СЗФО</li>

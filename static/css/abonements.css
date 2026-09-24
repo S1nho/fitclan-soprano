@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #212529;
+    color: #f8f9fa;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Шапка */
+header {
+    text-align: center;
+    padding-top: 40px;
+}
+
+.fs-4 {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 24px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.12);
+    width: fit-content;
+    color: #ffffff;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    margin: 0 0 24px 0;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.pricing-header {
+    max-width: 700px;
+    margin: 0 auto 40px;
+}
+
+.pricing-header h1 {
+    font-size: 52px;
+    font-weight: 400;
+    margin: 0 0 12px;
+}
+
+.pricing-header p {
+    color: #adb5bd;
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Контейнер карточек */
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+.row {
+    display: flex;
+    gap: 23px;
+}
+
+.col {
+    flex: 1;
+}
+
+/* Карточки */
+.card {
+    border: 1px solid #495057;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #212529;
+    text-align: center;
+}
+
+.card-header {
+    border-bottom: 1px solid #495057;
+    padding: 18px;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.card-body {
+    padding: 20px 16px 16px;
+}
+
+.pricing-card-title {
+    margin: 0 0 18px;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.text-body-secondary {
+    color: #adb5bd;
+}
+
+.pricing-card-title small {
+    font-size: 22px;
+    font-weight: 300;
+}
+
+/* Список */
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 25px;
+}
+
+.list li {
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+
+/* Третья карточка */
+.col:nth-child(3) .card {
+    border-color: #0d6efd;
+}
+
+.col:nth-child(3) .card-header {
+    background: #0d6efd;
+    border-color: #0d6efd;
+}

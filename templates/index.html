@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>fit-clan soprano</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
         <link href="https://googleapis.com" rel="stylesheet">
     </head>
     <body>
@@ -18,10 +18,10 @@
         <p class="hero-text">Ультрасовременное железо, атмосфера жесткого драйва и команда
         тренеров, которая заставит тебя выжать максимум на пути к идеальной форме.</p>
         <div class="hero-buttons">
-            <a href="{{ url_for('abonements') }}" target="_blank" class="btn-first"><b>Выбрать абонемент</b></a>
-            <a href="{{ url_for('directions') }}" target="_blank" class="btn-second"><b>направления</b></a>
-            <a href="{{ url_for('trainers') }}" target="_blank" class="btn-third"><b>Наши тренеры</b></a>
-            <a href="{{ url_for('schedule') }}" target="_blank" class="btn-third"><b>Расписание</b></a>
+            <a href="{{ url_for('abonements') }}" class="btn-first"><b>Выбрать абонемент</b></a>
+            <a href="{{ url_for('directions') }}" class="btn-second"><b>Направления</b></a>
+            <a href="{{ url_for('trainers') }}" class="btn-third"><b>Наши тренеры</b></a>
+            <a href="{{ url_for('schedule') }}" class="btn-third"><b>Расписание</b></a>
         </div>
         <hr>
 
@@ -42,6 +42,5 @@
         </footer>
 
     </div>
-
     </body>
 </html>
