@@ -13,9 +13,15 @@
 # HTML и CSS
 
 # КОМАНДЫ УСТАНОВКИ ЗАВИСИМОСТЕЙ И ЗАПУСКА ПРИЛОЖЕНИЯ
-# Flask - создание сайта на локальном сервере
-# app.route - указание адреса на сайте
-# render_template - отображение файлов
+# 1. Создайте виртуальное окружение venv
+python -m venv venv
+# 2. Активируйте виртуальное окружение
+# Для Windows:
+venv\Scripts\activate
+# Для macOS и Linux:
+source venv/bin/activate
+# 3. Установите Flask
+pip install flask
 
 # ПЕРЕЧЕНЬ РЕАЛИЗОВАННЫХ МАРШРУТОВ
 # / - на Главную
