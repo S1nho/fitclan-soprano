@@ -1,10 +1,25 @@
-from flask import Flask, jsonify
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route('/hello', methods=['GET'])
-def hello():
-    return jsonify({'message': 'Hello World'})
+@app.route("/")
+def index():
+    return render_template("index.html")
 
-if __name__ == '__main__':
-    app.run(debug=True)
+@app.route("/abonements")
+def abonements():
+    return render_template("abonements.html")
+
+@app.route("/directions")
+def directions():
+    return render_template("directions.html")
+
+@app.route("/trainers")
+def trainers():
+    return render_template("trainers.html")
+
+@app.route("/schedule")
+def schedule():
+    return render_template("schedule.html")
+
+app.run(debug=True)

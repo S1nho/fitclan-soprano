@@ -4,91 +4,20 @@
         <meta charset="utf-8">
         <title>Тренера</title>
 
-        <link rel="preconnect" href="https://googleapis.com">
-        <link rel="preconnect" href="https://gstatic.com" crossorigin>
-        <link href="https://googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
-
-        <style>
-            body {
-                background-color: #1a4375;
-                color: #D9FCED;
-                margin: 0;
-                padding: 0;
-                font-family: 'Montserrat', sans-serif;
-            }
-            
-            .headline {
-                text-align: center;
-                color: #ffffff;
-                font-size: 2.8rem;      
-                font-weight: 900;          
-                text-transform: uppercase;
-                margin-top: 40px;         
-                margin-bottom: 20px;
-            }
-
-            .trainers {
-                display: flex;       
-                flex-wrap: wrap;       
-                gap: 20px;             
-                justify-content: center;
-                padding: 20px;
-            }
-
-            .trainers-card {
-                background-color: #ffffff;
-                padding: 15px;
-                border-radius: 12px;
-                width: 490px;
-                display: flex;
-                gap: 15px;
-                align-items: flex-start;         
-            }
-
-            .trainers-photo {
-                width: 170px;
-                height: auto;
-                object-fit: cover;
-                border-radius: 6px;
-            }
-
-            .trainers-info {
-                color: #1a4375;    
-            }
-
-            .trainers-info h2 {
-                margin: 0 0 5px 0;
-                font-size: 1.6rem;
-            }
-
-            .trainers-info p {
-                margin: 0 0 10px 0;
-                font-weight: bold;
-                color: #c99300; 
-            }
-
-            .trainers-info ul {
-                margin: 0;
-                padding-left: 20px;
-                list-style-type: disc; 
-                color: #1a4375;     
-                line-height: 1.5;    
-            }
-
-            .trainers-info li {
-                margin-bottom: 4px;
-                font-weight: normal;
-                color: #1a4375;
-                font-size: 0.95rem;
-            }
-        </style>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/trainers.css') }}">
+        <link href="https://googleapis.com" rel="stylesheet">
+        
     </head>
     <body>
-        <div class="headline">НАШИ ТРЕНЕРЫ</div>
+        <header> 
+            <div class="fs-4"><a href="{{ url_for('index') }}" class="btn-first"><b>Fit-clan Soprano</b></a></div> 
+            <h1 class="headline">НАШИ ТРЕНЕРЫ</h1> 
+        </header>
+        
 
-        <div class="trainers"> 
+        <div class="trainers">
             <div class="trainers-card">
-                <img src="photo/maksim.jpg" alt="Тренер Максим" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
+                <img src="{{ url_for('static', filename='images/maksim.jpg') }}" alt="Тренер Максим" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
                 <div class="trainers-info">
                     <h2>Максим</h2>
                     <p>Тренер по силовым тренировкам</p>
@@ -103,7 +32,7 @@
             </div>
 
             <div class="trainers-card">
-                <img src="photo/vladimir.jpg" alt="Тренер Владимир" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
+                <img src="{{ url_for('static', filename='images/vladimir.jpg') }}" alt="Тренер Владимир" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
                 <div class="trainers-info">
                     <h2>Владимир</h2>
                     <p>Тренер по боксу</p>
@@ -116,9 +45,8 @@
                     </ul>
                 </div>
             </div>
-
             <div class="trainers-card">
-                <img src="photo/ksen.jpg" alt="Тренер Ксения" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
+                <img src="{{ url_for('static', filename='images/ksen.jpg') }}" alt="Тренер Ксения" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
                 <div class="trainers-info">
                     <h2>Ксения</h2>
                     <p>Тренер по йоге</p>
@@ -133,7 +61,7 @@
             </div>
 
             <div class="trainers-card">
-                <img src="photo/katya.jpg" alt="Тренер Екатерина" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
+                <img src="{{ url_for('static', filename='images/katya.jpg') }}" alt="Тренер Екатерина" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
                 <div class="trainers-info">
                     <h2>Екатерина</h2>
                     <p>Тренер по плаванию</p>
