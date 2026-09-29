@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Client(db.Model):
-    __tablename__ = 'soprano'
+    __tablename__ = 'client'
 
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(50), nullable = False)
