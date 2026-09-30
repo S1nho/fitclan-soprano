@@ -22,4 +22,10 @@ def trainers():
 def schedule():
     return render_template("schedule.html")
 
+@app.route('/register')
+def register():
+
+    return render_template('registration.html')
+
+
 app.run(debug=True)
