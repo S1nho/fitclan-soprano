@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор ИМТ и калорий</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/calculators.css') }}">
+</head>
+<body>
+
+    <h1>Калькулятор ИМТ и нормы калорий</h1>
+    <p>Введите свои данные, чтобы узнать индекс массы тела и суточную норму калорий.</p>
+
+    <form method="POST">
+        <label>Вес (кг): <input type="number" name="weight" step="0.1" required></label>
+        <label>Рост (см): <input type="number" name="height" required></label>
+
+        <label>Уровень активности:
+            <select name="activity">
+                <option value="26">Сидячий образ жизни</option>
+                <option value="30">Лёгкая активность</option>
+                <option value="35">Средняя активность</option>
+                <option value="40">Высокая активность</option>
+                <option value="45">Очень высокая активность</option>
+            </select>
+        </label>
+
+        <button type="submit">Рассчитать</button>
+    </form>
+
+    {% if imt %}
+    <div class="result">
+        <p>Ваш ИМТ: <strong>{{ imt }}</strong></p>
+        <p>Норма калорий: <strong>{{ calories }} ккал/день</strong></p>
+        <p class="advice">{{ advice }}</p>
+    </div>
+    {% endif %}
+
+</body>
+</html>
