@@ -12,11 +12,18 @@ migrate = Migrate(app, db)
 class Client(db.Model):
     __tablename__ = 'client'
 
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.String(120), unique = True, nullable = False, primary_key = True)
+    password = db.Column(db.Integer, nullable = False)
     name = db.Column(db.String(50), nullable = False)
-    email = db.Column(db.String(120), unique = True, nullable = False)
-    password = db.Column(db.String(255), nullable = False)
+    email = db.Column(db.String(255), nullable = False)
     gender = db.Column(db.String(7), nullable = False)
+
+class Pay(db.Model):
+    __tablename__ = 'payment'
+
+    id = db.Column(db.String(120), unique = True, nullable = False, primary_key = True)
+    email = db.Column(db.String(120), db.ForeignKey('client.email'), nullable = False)
+    payment = db.Column(db.Boolean, default = False, nullable = False)
 
 @app.route("/")
 def index():
