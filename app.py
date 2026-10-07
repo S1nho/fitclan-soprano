@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_login import current_user
 
 app = Flask(__name__)
 
@@ -44,6 +45,10 @@ def trainers():
 @app.route("/schedule")
 def schedule():
     return render_template("schedule.html")
+
+@app.route("/personal_ac")
+def personal_ac():
+    return render_template("personal_ac.html", current_user=current_user)
 
 if __name__ == '__main__':
     app.run(debug=True)

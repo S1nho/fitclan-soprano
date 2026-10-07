@@ -3,16 +3,36 @@
     <head>
         <meta charset="utf-8">
         <title>Личный кабинет</title>
-
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/trainers.css') }}">
-        <link href="https://googleapis.com" rel="stylesheet">
-        
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/personal_ac.css') }}?v=1">
     </head>
     <body>
-        <header> 
-            <div class="fs-4"><a href="{{ url_for('index') }}" class="btn-first"><b>Fit-clan Soprano</b></a></div> 
+
+        <div class="header">
+            <div class="header-container">
+                <div></div>
+                <a href="{{ url_for('index') }}" style="text-decoration: none;">
+                    <h1 class="hero-title">FIT-CLAN SOPRANO</h1>
+                </a>
+            </div>
+        </div>
+
+        <header>
             <h1 class="headline">ЛИЧНЫЙ КАБИНЕТ</h1> 
         </header>
 
-        <div class="profile">
-            <h1>"Личный кабинет"</h1>
+        {% if current_user %}
+            <h1>Привет, {{ current_user.name }}!</h1>
+            
+            <div class="user-info">
+                <h3>Ваш профиль</h3>
+                <p><strong>Email:</strong> {{ current_user.email }}</p>
+                <p><strong>Пол:</strong> {{ current_user.gender }}</p>
+            </div>
+        {% else %}
+            <h1>Привет, Гость!</h1>
+            <div class="user-info">
+                <p>Вы не авторизованы в системе.</p>
+            </div>
+        {% endif %}
+    </body>
+</html>
