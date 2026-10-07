@@ -1,0 +1,109 @@
+    body {
+        background-color: #1a4375;
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .header {
+        width:100%;
+        height:90px;
+        background:#122e51;
+
+        display:flex;
+        align-items:center;
+        justify-content: center;
+    
+
+    .header-container {
+        max-width:1200px;
+        width:100%;
+        font-size:20px;
+        font-weight:900px;
+        background:transparent;
+        display:flex;
+        align-items:center;
+        justify-content: space-between;
+    }
+
+    .hero-title {
+        font-weight: 900;
+        }
+
+    .button {
+        width:fit-content;
+        height:24px;
+        font-size:25px;
+        border: none;
+        color: white;
+        transition: .2s linear;
+        background: transparent;
+        cursor: pointer
+
+    }
+    }
+
+    .header {
+        width: 100%;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .headline {
+        color: #ffffff;
+        font-size: 2.8rem;      
+        font-weight: 900;          
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    body > h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-top: 20px;
+        margin-bottom: 30px;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    .user-info {
+        background-color: #ffffff;
+        color: #1a4375;
+        padding: 30px 40px;
+        border-radius: 12px;
+        width: 450px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        box-sizing: border-box;
+    }
+
+    .user-info h3 {
+        margin: 0 0 5px 0;
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #1a4375;
+    }
+
+    .user-info p {
+        font-size: 1.05rem;
+        margin: 15px 0;
+        line-height: 1.6;
+        border-bottom: 1px solid #f0f2f5;
+        padding-bottom: 10px;
+    }
+
+    .user-info strong {
+        font-weight: 700;
+        color: #1a4375;
+        display: inline-block;
+        width: 90px;
+    }
+
+    .user-info strong + text, 
+    .user-info p {
+        color: #c99300;
+}
