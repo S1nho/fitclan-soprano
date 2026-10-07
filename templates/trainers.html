@@ -2,9 +2,11 @@
 <html lang="ru">
     <head>
         <meta charset="utf-8">
-        <title>Наши Тренеры</title>
-        <link href="https://googleapis.com" rel="stylesheet">
+        <title>Тренера</title>
+
         <link rel="stylesheet" href="{{ url_for('static', filename='css/trainers.css') }}">
+        <link href="https://googleapis.com" rel="stylesheet">
+
     </head>
     <body>
 
@@ -41,9 +43,8 @@
                 </div>
             </div>
 
-
             <div class="trainers-card">
-                <img src="{{ url_for('static', filename='images/vladimir.jpg') }}" alt="Tremor Владимир" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
+                <img src="{{ url_for('static', filename='images/vladimir.jpg') }}" alt="Тренер Владимир" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
                 <div class="trainers-info">
                     <h2>Владимир</h2>
                     <p>Тренер по боксу</p>
@@ -56,8 +57,6 @@
                     </ul>
                 </div>
             </div>
-
-
             <div class="trainers-card">
                 <img src="{{ url_for('static', filename='images/ksen.jpg') }}" alt="Тренер Ксения" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
                 <div class="trainers-info">
@@ -72,7 +71,6 @@
                     </ul>
                 </div>
             </div>
-
 
             <div class="trainers-card">
                 <img src="{{ url_for('static', filename='images/katya.jpg') }}" alt="Тренер Екатерина" style="float:left; margin-right:10px;" class="trainers-photo" width="200">
@@ -89,6 +87,5 @@
                 </div>
             </div>
         </div>
-
     </body>
 </html>
