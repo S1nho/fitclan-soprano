@@ -1,38 +1,53 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Личный кабинет</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/personal_ac.css') }}?v=1">
-    </head>
-    <body>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
 
-        <div class="header">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/personal_ac.css') }}">
+</head>
+<body>
+
+    <div class="header">
             <div class="header-container">
                 <div></div>
                 <a href="{{ url_for('index') }}" style="text-decoration: none;">
                     <h1 class="hero-title">FIT-CLAN SOPRANO</h1>
                 </a>
+                <a href="{{ url_for('register') }}">
+                    <button>Личный кабинет</button>
+                </a>
             </div>
         </div>
 
-        <header>
-            <h1 class="headline">ЛИЧНЫЙ КАБИНЕТ</h1> 
-        </header>
+    <div class="profile-container">
+        <h2>Личный кабинет</h2>
 
-        {% if current_user %}
-            <h1>Привет, {{ current_user.name }}!</h1>
-            
-            <div class="user-info">
-                <h3>Ваш профиль</h3>
-                <p><strong>Email:</strong> {{ current_user.email }}</p>
-                <p><strong>Пол:</strong> {{ current_user.gender }}</p>
-            </div>
-        {% else %}
-            <h1>Привет, Гость!</h1>
-            <div class="user-info">
-                <p>Вы не авторизованы в системе.</p>
-            </div>
-        {% endif %}
-    </body>
+        <div class="info-group">
+            <span class="info-label">Имя клиента:</span>
+            <span class="info-value">{{ current_user.name }}</span>
+        </div>
+
+        <div class="info-group">
+            <span class="info-label">Электронная почта:</span>
+            <span class="info-value">{{ current_user.email }}</span>
+        </div>
+
+        <div class="info-group">
+            <span class="info-label">Пол:</span>
+            <span class="info-value">{{ current_user.gender }}</span>
+        </div>
+
+        <div class="info-group">
+            <span class="info-label">ID аккаунта:</span>
+            <span class="info-value">{{ current_user.id }}</span>
+        </div>
+
+        <div class="nav-links">
+
+        <a href="{{ url_for('logout') }}" class="btn btn-logout">Выйти</a>
+        </div>
+    </div>
+
+</body>
 </html>
