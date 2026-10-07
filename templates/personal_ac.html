@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/personal_ac.css') }}">
+</head>
+<body>
+
+    <div class="header">
+            <div class="header-container">
+                <div></div>
+                <a href="{{ url_for('index') }}" style="text-decoration: none;">
+                    <h1 class="hero-title">FIT-CLAN SOPRANO</h1>
+                </a>
+                <a href="{{ url_for('register') }}">
+                    <button>Личный кабинет</button>
+                </a>
+            </div>
+        </div>
+
+    <div class="profile-container">
+        <h2>Личный кабинет</h2>
+
+        <div class="info-group">
+            <span class="info-label">Имя клиента:</span>
+            <span class="info-value">{{ current_user.name }}</span>
+        </div>
+
+        <div class="info-group">
+            <span class="info-label">Электронная почта:</span>
+            <span class="info-value">{{ current_user.email }}</span>
+        </div>
+
+        <div class="info-group">
+            <span class="info-label">Пол:</span>
+            <span class="info-value">{{ current_user.gender }}</span>
+        </div>
+
+        <div class="info-group">
+            <span class="info-label">ID аккаунта:</span>
+            <span class="info-value">{{ current_user.id }}</span>
+        </div>
+
+        <div class="nav-links">
+
+        <a href="{{ url_for('logout') }}" class="btn btn-logout">Выйти</a>
+        </div>
+    </div>
+
+</body>
+</html>

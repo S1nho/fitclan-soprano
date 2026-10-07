@@ -6,6 +6,38 @@ body {
                 font-family: 'Montserrat', sans-serif;
             }
 
+             .header{
+    width:100%;
+    height:90px;
+    background:#122e51;
+
+
+    display:flex;
+    align-items:center;
+    justify-content: center;
+
+.header-container {
+    max-width:1200px;
+    width:100%;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+    button {
+        width:fit-content;
+        height:24px;
+        font-size:25px;
+        border: none;
+        color: white;
+        transition: .2s linear;
+        background: transparent;
+        cursor: pointer
+
+
+    }
+}
             .headline {
                 text-align: center;
                 color: #ffffff;

@@ -8,7 +8,17 @@
     </head>
     <body>
         <header> 
-            <div class="fs-4"><a href="{{ url_for('index') }}" class="btn-first"><b>Fit-clan Soprano</b></a></div> 
+             <div class="header">
+            <div class="header-container">
+                <div></div>
+                <a href="{{ url_for('index') }}" style="text-decoration: none;">
+                    <h1 class="hero-title">FIT-CLAN SOPRANO</h1>
+                </a>
+                <a href="{{ url_for('register') }}">
+                    <button>Личный кабинет</button>
+                </a>
+            </div>
+        </div>
             <div class="pricing-header"> 
             <h1 class="text-body-emphasis">АБОНЕМЕНТЫ</h1> 
             <p class="text-body-secondary">Наш фит-клуб предоставляет на выбор 3 абонемента, в которых вы сможете определить, что для вас выгодней</p> </div> 
