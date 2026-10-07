@@ -58,9 +58,9 @@ def login():
     return render_template('auth.html')
 
 @app.route("/personal_ac")
-@login_required
+
 def personal_ac():
     return render_template("personal_ac.html", current_user=current_user)
 
 if __name__ == '__main__':
-app.run(debug=True)
+    app.run(debug=True)
