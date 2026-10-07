@@ -46,7 +46,16 @@ def trainers():
 def schedule():
     return render_template("schedule.html")
 
+@app.route('/register')
+def register():
+    return render_template('registration.html')
+
+@app.route('/login')
+def login():
+    return render_template('auth.html')
+
 @app.route("/personal_ac")
+@login_required
 def personal_ac():
     return render_template("personal_ac.html", current_user=current_user)
 
