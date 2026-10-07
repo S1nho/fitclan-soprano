@@ -12,21 +12,42 @@
            <form action="">
                <h1 class="registration-title">Регистрация</h1>
                <div class="input-box">
-               <input type="text" placeholder="Имя" required>
+               <input type="text" name="name" minlength="2" maxlength="50" placeholder="Имя" required>
                </div>
 
                <div class="input-box">
-                   <input type="email" placeholder="почта" required>
+                   <input type="email" name="email" placeholder="Почта" required>
                </div>
 
                <div class="input-box">
-                   <input type="password" placeholder="пароль" required>
+                   <input type="password" name="password"
+       minlength="8"
+       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+       title="Пароль должен быть не менее 8 символов и содержать как минимум одну латинскую букву и одну цифру"
+       placeholder="Пароль"
+       required>
                </div>
+
+               <div class="gender-box">
+    <span class="gender-title">Пол:</span>
+    <div class="gender-inputs">
+        <label class="gender-label">
+
+            <input type="radio" name="gender" value="male" required>
+            <span class="custom-radio"></span> Мужской
+        </label>
+        <label class="gender-label">
+
+            <input type="radio" name="gender" value="female" required>
+            <span class="custom-radio"></span> Женский
+        </label>
+    </div>
+</div>
 
                <button type="submit" class="btn">Зарегестрироваться</button>
 
                <div class="login-link">
-                   <p>Уже есть аккаунт? <a href="#">Войти</a></p>
+                   <p>Уже есть аккаунт? <a href="{{ url_for('login') }}">Войти</a></p>
                </div>
            </form>
 

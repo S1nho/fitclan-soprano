@@ -6,6 +6,8 @@ body {
     overflow-x: hidden;
     box-sizing: border-box;
 }
+
+
 .directions-container {
     color: #ffffff;
     padding: 80px 60px;
@@ -14,6 +16,49 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.header{
+    width:100%;
+    height:90px;
+    background:#122e51;
+
+
+    display:flex;
+    align-items:center;
+    justify-content: center;
+
+.header-container {
+    max-width:1200px;
+    width:100%;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+    button {
+        width:fit-content;
+        height:24px;
+        font-size:25px;
+        border: none;
+        color: white;
+        transition: .2s linear;
+        background: transparent;
+        cursor: pointer
+
+
+    }
+}
+
+.hero-title {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    text-align: center;
 }
 
 .directions-title {
@@ -42,8 +87,8 @@ a {
     text-decoration: none;
 }
 
-.directions-main-text {
-    font-size: 21px;
+.directions-text {
+    font-size: 19px;
     line-height: 1.4;
     max-width: 600px;
     margin: 0 0 50px 0;
