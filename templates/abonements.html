@@ -25,6 +25,7 @@
         </header>
         <main> 
             <div class="row text-center"> 
+            <a href="{{ url_for('payment_page', plan_id='month') }}" class="click-card">
             <div class="col"> 
             <div class="card mb"> 
             <div class="card-header"> 
@@ -38,7 +39,9 @@
                     <li>Поддержка от нашей команды</li> 
                     <li>Бесплатный кулер с водой</li> 
                 </ul> 
+            </a>
             </div> </div> </div> 
+            <a href="{{ url_for('payment_page', plan_id='six_months') }}" class="click-card">
             <div class="col"> 
             <div class="card mb"> 
             <div class="card-header"> 
@@ -53,7 +56,10 @@
                     <li>Поддержка от нашей команды</li> 
                     <li>Доступ к буфету</li> 
                 </ul> 
-            </div> </div> </div> <div class="col"> 
+            </a>
+            </div> </div> </div> 
+            <a href="{{ url_for('payment_page', plan_id='year') }}" class="click-card">
+                <div class="col"> 
                 <div class="card mb"> 
                 <div class="card-header"> 
                 <h4 class="fw-normal">Стать спортсменом</h4> </div> 
@@ -66,7 +72,8 @@
                     <li>Приоритетная очередь в зале</li> 
                     <li>Сопровождение от нас</li> 
                     <li>Комната отдыха</li> 
-                </ul>                                        
+                </ul> 
+            </a>                                       
             </div> </div> </div> </div>
         </main>
     </body>

@@ -6,6 +6,18 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/calculators.css') }}">
 </head>
 <body>
+    <div class="header">
+            <div class="header-container">
+                <div></div>
+                <a href="{{ url_for('index') }}" style="text-decoration: none;">
+                    <h1 class="hero-title">FIT-CLAN SOPRANO</h1>
+                </a>
+                <a href="{{ url_for('register') }}">
+                    <button class = "button1">Личный кабинет</button>
+                </a>
+            </div>
+        </div>
+
 
     <h1>Калькулятор ИМТ и нормы калорий</h1>
     <p>Введите свои данные, чтобы узнать индекс массы тела и суточную норму калорий.</p>

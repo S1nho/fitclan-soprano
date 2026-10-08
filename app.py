@@ -2,9 +2,7 @@ import uuid
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
-
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -41,6 +39,10 @@ class Pay(db.Model):
     id = db.Column(db.String(120), unique=True, nullable=False, primary_key=True)
     email = db.Column(db.String(120), db.ForeignKey('client.email'), nullable=False)
     payment = db.Column(db.Boolean, default=False, nullable=False)
+    summa = db.Column(db.Integer, nullable=False)
+    tarif = db.Column(db.String(50), nullable=False)
+    status = db.Column(db.String(50), nullable=False, default='Не оплачено')
+
 
 
 
@@ -178,7 +180,24 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+PLANS = {
+    "month": {"name": "Пробный", "price": 10_000, "duration": "1 месяц"},
+    "six_months": {"name": "Будь в форме", "price": 50_000, "duration": "6 месяцев"},
+    "year": {"name": "Максимум возможностей", "price": 100_000, "duration": "1 год"},
+}
 
+@app.route("/payment/<plan_id>")
+@login_required
+def payment_page(plan_id):
+    plan = PLANS.get(plan_id)
+    if plan is None:
+        return "Абонемент не найден", 404
+
+    return render_template("payment.html", plan=plan)
+
+@app.route("/payment_success.html", methods=["GET", "POST"])
+def payment_success():
+    return render_template("payment_success.html")
 
 if __name__ == '__main__':
     with app.app_context():
