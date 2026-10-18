@@ -1,0 +1,1742 @@
+/* Styles consolidated from the former page-specific stylesheets. */
+
+/* abonements.css */
+body.page-abonements,
+body.page-abonements * {
+    box-sizing: border-box;
+}
+
+
+body.page-abonements {
+    margin: 0;
+    background: #1a4375;
+    color: #f8f9fa;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+
+body.page-abonements .header {
+    width:100%;
+    height:90px;
+    background:#122e51;
+
+
+    display:flex;
+    align-items:center;
+    justify-content: center;
+
+.header-container {
+    max-width:1200px;
+    width:100%;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+    button {
+        width:fit-content;
+        height:24px;
+        font-size:25px;
+        border: none;
+        color: white;
+        transition: .2s linear;
+        background: transparent;
+        cursor: pointer
+
+
+    }
+}
+
+
+body.page-abonements .fs-4 {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 24px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.12);
+    width: fit-content;
+    color: #ffffff;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    margin: 0 0 24px 0;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+
+body.page-abonements a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+body.page-abonements .pricing-header {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    margin-top: 40px;
+    text-align: center; 
+}
+
+
+body.page-abonements .pricing-header h1 {
+    font-size: 52px;
+    font-weight: 400;
+    margin: 0 0 12px;
+
+}
+
+
+body.page-abonements .pricing-header p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+
+/* Контейнер карточек */
+body.page-abonements main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px 40px;
+}
+
+
+body.page-abonements .row {
+    display: flex;
+    gap: 23px;
+}
+
+
+body.page-abonements .col {
+    flex: 1;
+}
+
+
+/* Карточки */
+body.page-abonements .card {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 8px;
+    overflow: hidden;
+    background: #122e51;
+    text-align: center;
+}
+
+
+body.page-abonements .card-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 18px;
+}
+
+
+body.page-abonements .card-header h4 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+
+body.page-abonements .card-body {
+    padding: 20px 16px 16px;
+}
+
+
+body.page-abonements .pricing-card-title {
+    margin: 0 0 18px;
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+
+body.page-abonements .text-body-secondary {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+body.page-abonements .pricing-card-title small {
+    font-size: 22px;
+    font-weight: 300;
+}
+
+
+/* Список */
+body.page-abonements .list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 25px;
+}
+
+
+body.page-abonements .list li {
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+
+
+/* Третья карточка */
+body.page-abonements .col:nth-child(3) .card {
+    border-color: #ffff00;
+}
+
+
+body.page-abonements .col:nth-child(3) .card-header {
+    background: #1a4375;
+    border-color: #ffff00;
+}
+
+
+/* auth.css */
+body.page-auth {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+    font-family: 'Montserrat', sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height: 100vh;
+    background-color:#1a4375;
+}
+
+
+body.page-auth .wrapper {
+    width: 420px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    padding: 60px 40px;
+    box-sizing: border-box;
+}
+
+
+body.page-auth .registration-title {
+    font-size: 36px;
+    text-align: center;
+}
+
+
+body.page-auth .input-box {
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+
+body.page-auth .input-box input {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 40px;
+    outline: none;
+    color: #ffffff;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+
+
+body.page-auth .input-box input::placeholder {
+    color: #ffffff
+}
+
+
+body.page-auth .btn {
+    width:100%;
+    height:45px;
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #1a4375;
+    font-weight: 600;
+}
+
+/* calculators.css */
+    body.page-calculators {
+        background-color: #1a4375;
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+body.page-calculators .header {
+    width:100%;
+    height:90px;
+    background:#122e51;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+
+.header-container {
+    max-width:1200px;
+    width:100%;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.hero-title {
+    border-bottom:none;
+    padding-bottom: 0px;
+}
+
+    .button1 {
+        width:fit-content;
+        font-size:25px;
+        border: none;
+        color: white;
+        transition: .2s linear;
+        background: transparent;
+        cursor: pointer;
+    }
+}
+
+body.page-calculators h1 {
+    color: #ffffff;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+
+body.page-calculators form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+}
+
+
+body.page-calculators label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+body.page-calculators input,
+body.page-calculators select {
+    padding: 10px;
+    border: 2px solid #ffffff;
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+
+body.page-calculators button {
+    padding: 12px;
+    background-color: #ffffff;
+    color: #1a4375;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+
+body.page-calculators button:hover {
+    background-color: #ffff00;
+}
+
+
+body.page-calculators .result {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    max-width: 400px;
+}
+
+
+body.page-calculators .result strong {
+    color: #ffff00;
+}
+
+
+body.page-calculators .advice {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: rgba(255, 255, 0, 0.1);
+    border-left: 4px solid #ffff00;
+    border-radius: 4px;
+}
+
+
+body.page-calculators select option {
+    background-color: #1a4375;
+    color: #ffffff;
+}
+
+/* directions.css */
+body.page-directions {
+    background-color: #1a4375;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+
+
+body.page-directions .directions-container {
+    color: #ffffff;
+    padding: 80px 60px;
+    box-sizing: border-box;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+body.page-directions .header {
+    width:100%;
+    height:90px;
+    background:#122e51;
+
+
+    display:flex;
+    align-items:center;
+    justify-content: center;
+
+.header-container {
+    max-width:1200px;
+    width:100%;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+    button {
+        width:fit-content;
+        height:24px;
+        font-size:25px;
+        border: none;
+        color: white;
+        transition: .2s linear;
+        background: transparent;
+        cursor: pointer
+
+
+    }
+}
+
+
+body.page-directions .hero-title {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    text-align: center;
+}
+
+
+body.page-directions .directions-title {
+    font-size: 42px;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 0 0 8px 0;
+}
+
+
+
+body.page-directions .directions-subtitle {
+    background: rgba(255, 255, 255, 0.12);
+    width: fit-content;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    margin: 0 0 24px 0;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+
+body.page-directions a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+body.page-directions .directions-text {
+    font-size: 19px;
+    line-height: 1.4;
+    max-width: 600px;
+    margin: 0 0 50px 0;
+}
+
+
+body.page-directions .directions-list {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 60px;
+    width: 100%;
+}
+
+
+body.page-directions .direction-card {
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 8px;
+    padding: 35px 25px;
+    width: calc(25% - 15px);
+    box-sizing: border-box;
+}
+
+
+body.page-directions .direction-card .direction-title {
+    font-size: 24px;
+    font-weight: 800;
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+    color: #ffffff;
+}
+
+
+body.page-directions .direction-card .direction-text {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #ffffff;
+    margin: 0;
+}
+
+
+body.page-directions hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 0 30px 0;
+}
+
+
+body.page-directions .directions-footer {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+/* index.css */
+body.page-index {
+    background-color: #1a4375;
+    color: blue;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat',sans-serif;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+
+body.page-index .hero-container {
+    background: transparent;
+    min-height: calc(100vh - 50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+
+body.page-index .header {
+    width:100%;
+    height:90px;
+    background:#122e51;
+
+
+    display:flex;
+    align-items:center;
+    justify-content: center;
+
+.header-container {
+    max-width:1200px;
+    width:100%;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+    button {
+        width:fit-content;
+        height:24px;
+        font-size:25px;
+        border: none;
+        color: white;
+        transition: .2s linear;
+        background: transparent;
+        cursor: pointer
+
+
+    }
+}
+
+
+body.page-index .hero-title {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    text-align: center;
+}
+
+
+body.page-index .hero-subtitle {
+    background:rgba(255, 255, 255, 0.1);
+    width: fit-content;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 12px;
+    margin-bottom: 4px;
+    display: inline-block;
+    border-radius: 4px;
+}
+
+
+body.page-index .hero-slogan {
+    color: #ffffff;
+    font-size: 45px;
+    font-weight: 800;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+
+body.page-index .hero-text {
+    color: #ffffff;
+    font-size: 22px;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 40px;
+    max-width: 600px;
+    line-height: 1.4;
+}
+
+
+body.page-index .hero-buttons {
+    background: transparent;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 550px;
+    margin-bottom: 40px;
+}
+
+
+body.page-index a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+body.page-index .btn-first,
+body.page-index .btn-second,
+body.page-index .btn-third,
+body.page-index .btn-fourth,
+body.page-index .btn-fifth {
+    color: #ffffff;
+    font-size: 19px;
+    font-family: sans-serif;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    display: inline-block;
+    transition: background 0.3s;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    white-space: nowrap;
+
+    width: calc(50% - 10px);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+
+body.page-index .hero-footer {
+    background-color: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px 80px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 80px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+
+body.page-index .Specs {
+    font-size: 18px;
+    color: #ffffff;
+    padding: 0;
+    margin: 0;
+}
+
+
+
+/* payment.css */
+body.page-payment,
+body.page-payment * {
+    box-sizing: border-box;
+}
+
+
+body.page-payment {
+    margin: 0;
+    min-height: 100vh;
+    background: #1a4375;
+    color: #f8f9fa;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+body.page-payment a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+/* Шапка в стиле страницы абонементов */
+body.page-payment .header {
+    width: 100%;
+    min-height: 90px;
+    background: #122e51;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 24px;
+}
+
+
+body.page-payment .header-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+
+body.page-payment .hero-title {
+    margin: 0;
+    color: #f8f9fa;
+    font-size: clamp(20px, 3vw, 30px);
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+
+body.page-payment .header button,
+body.page-payment .back-link {
+    padding-left: 3em;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    color: #ffffff;
+    font: inherit;
+    cursor: pointer;
+    transition: color 0.2s ease; 
+}
+
+
+body.page-payment .header button {
+    padding: 8px 12px;
+    font-size: 16px;
+}
+
+
+body.page-payment .header button:hover,
+body.page-payment .back-link:hover {
+    color: #ffff00;
+}
+
+
+/* Заголовок страницы */
+body.page-payment .payment-header {
+    max-width: 700px;
+    margin: 40px auto 32px;
+    padding: 0 20px;
+    text-align: center;
+}
+
+
+body.page-payment .payment-header h1 {
+    margin: 0 0 12px;
+    font-size: clamp(34px, 6vw, 52px);
+    font-weight: 400;
+}
+
+
+body.page-payment .payment-header p,
+body.page-payment .payment-muted {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* Карточка с заказом и формой */
+body.page-payment .payment-main {
+    width: min(100% - 40px, 760px);
+    margin: 0 auto;
+    padding-bottom: 48px;
+}
+
+
+body.page-payment .payment-card {
+    width: 100%;
+    max-width: 296px;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 9px;
+    background: #122e51;
+}
+
+
+body.page-payment .payment-card-header {
+    padding: 17px 20px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    background: #112d50;
+    text-align: center;
+}
+
+
+body.page-payment .payment-card-header h2 {
+    margin: 0;
+    color: #cfeaff;
+    font-size: 22px;
+    font-weight: 400;
+}
+
+
+body.page-payment .payment-card-body {
+    padding: 18px 16px 16px;
+    text-align: center;
+}
+
+
+body.page-payment .payment-price {
+    margin: 0 0 17px;
+    color: #f8f9fa;
+    font-size: 38px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+
+body.page-payment .payment-price span {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 29px;
+    font-weight: 300;
+}
+
+
+body.page-payment .payment-features {
+    display: grid;
+    gap: 5px;
+    margin: 0 0 25px;
+    padding: 0;
+    color: #f8f9fa;
+    font-size: 15px;
+    line-height: 1.35;
+    list-style: none;
+}
+
+
+body.page-payment .order-summary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+
+body.page-payment .order-summary h3 {
+    margin: 0 0 6px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+body.page-payment .order-price {
+    flex: 0 0 auto;
+    color: #ffffff;
+    font-size: 26px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+
+body.page-payment .payment-form {
+    display: grid;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+
+body.page-payment .payment-form label {
+    display: grid;
+    gap: 8px;
+    color: #f8f9fa;
+    font-size: 15px;
+}
+
+
+body.page-payment .payment-form input,
+body.page-payment .payment-form select {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
+    outline: none;
+    background: #1a4375;
+    color: #f8f9fa;
+    font: inherit;
+}
+
+
+body.page-payment .payment-form input:focus,
+body.page-payment .payment-form select:focus {
+    border-color: #f8f9fa;
+    box-shadow: 0 0 0 3px rgba(255, 255, 0, 0.2);
+}
+
+
+body.page-payment .payment-methods {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+
+body.page-payment .payment-methods legend {
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+
+body.page-payment .payment-method {
+    display: flex !important;
+    align-items: center;
+    gap: 10px !important;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+body.page-payment .payment-method input {
+    width: 18px;
+    min-height: 18px;
+    margin: 0;
+    accent-color: #f8f9fa;
+}
+
+
+body.page-payment .pay-button {
+    display: flex;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 18px;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 5px;
+    background: #235491;
+    color: #f8f9fa;
+    font: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+
+body.page-payment .pay-button:hover {
+    background: #12417a;
+    transform: translateY(-1px);
+}
+
+
+body.page-payment .pay-button:focus-visible {
+    outline: 3px solid rgba(255, 255, 0, 0.45);
+    outline-offset: 3px;
+}
+
+
+body.page-payment .back-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 0;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+
+body.page-payment .icon {
+  max-width: 100%;  
+  height: auto;     
+  display: block;  
+  border-radius: 8px;              
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+
+
+
+@media (max-width: 600px){
+
+    body.page-payment .header {
+        padding: 14px 16px;
+    }
+
+
+    body.page-payment .payment-header {
+        margin-top: 30px;
+    }
+
+
+    body.page-payment .payment-main {
+        width: min(100% - 28px, 760px);
+    }
+
+
+    body.page-payment .order-summary {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+}
+
+
+/* personal_ac.css */
+    body.page-personal-ac {
+        background-color: #1a4375;
+        color: #ffffff;
+        margin: 0;
+        padding: 0;
+        font-family: 'Montserrat', sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    body.page-personal-ac .header {
+    width:100%;
+    height:90px;
+    background:#122e51;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+
+.header-container {
+    max-width:1200px;
+    width:100%;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+    button {
+        width:fit-content;
+        height:24px;
+        font-size:25px;
+        border: none;
+        color: white;
+        transition: .2s linear;
+        background: transparent;
+        cursor: pointer
+    }
+}
+
+    body.page-personal-ac .hero-title {
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    text-align: center;
+}
+
+
+    body.page-personal-ac .profile-container {
+    background-color: #ffffff;
+    color: #113462;
+    padding: 60px;
+    margin-top:70px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 500px;
+}
+
+
+
+body.page-personal-ac .profile-container h2 {
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 28px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #113462;
+}
+
+
+
+body.page-personal-ac .info-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+
+
+body.page-personal-ac .info-group:last-of-type {
+    border-bottom: none;
+    margin-bottom: 20px;
+}
+
+
+
+body.page-personal-ac .info-label {
+    font-weight: 600;
+    color: #718096;
+}
+
+
+
+body.page-personal-ac .info-value {
+    font-weight: 500;
+    color: #113462;
+    text-align: right;
+    word-break: break-all;
+}
+
+
+
+body.page-personal-ac .nav-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+
+
+body.page-personal-ac .btn {
+    display: inline-block;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    transition: all 0.2s ease;
+    flex: 1;
+}
+
+
+
+
+
+
+body.page-personal-ac .btn-logout {
+    background-color: #e74c3c;
+    color: #ffffff;
+}
+
+
+body.page-personal-ac .btn-logout:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+}
+
+/* registration.css */
+body.page-registration {
+    margin: 0;
+    padding: 0;
+    box-sizing:border-box;
+    font-family: 'Montserrat', sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height: 100vh;
+    background-color:#1a4375;
+}
+
+
+body.page-registration .wrapper {
+    width: 420px;
+    background-color: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    padding: 30px 40px;
+    box-sizing: border-box;
+}
+
+
+body.page-registration .registration-title {
+    font-size: 36px;
+    text-align: center;
+}
+
+
+body.page-registration .input-box {
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+
+body.page-registration .input-box input {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 40px;
+    outline: none;
+    color: #ffffff;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+
+
+body.page-registration .input-box input::placeholder {
+    color: #ffffff
+}
+
+
+body.page-registration .gender-box {
+    width: 100%;
+    margin: 20px 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+
+body.page-registration .gender-title {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 12px;
+}
+
+
+
+body.page-registration .gender-inputs {
+    display: flex;
+    gap: 30px;
+}
+
+
+
+body.page-registration .gender-label {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+}
+
+
+
+body.page-registration .gender-label input[type="radio"] {
+    display: none;
+}
+
+
+
+body.page-registration .custom-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+
+
+body.page-registration .gender-label:hover .custom-radio {
+    border-color: #ffffff;
+}
+
+
+
+body.page-registration .gender-label input[type="radio"]:checked + .custom-radio {
+    border-color: #ffffff;
+    background-color: transparent;
+}
+
+
+
+body.page-registration .gender-label input[type="radio"]:checked + .custom-radio::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+body.page-registration .btn {
+    width:100%;
+    height:45px;
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #1a4375;
+    font-weight: 600;
+}
+
+
+body.page-registration .login-link {
+    font-size:14.5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+body.page-registration .login-link p {
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+
+body.page-registration .login-link p a {
+color: #ffffff;
+text-decoration: none;
+font-weight: 600;
+}
+
+
+
+/* schedule.css */
+body.page-schedule {
+            background-color: #1a4375;
+            color: #ffffff;
+            font-family: 'Montserrat', sans-serif;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+
+        body.page-schedule .header {
+    width:100%;
+    height:90px;
+    background:#122e51;
+
+
+    display:flex;
+    align-items:center;
+    justify-content: center;
+
+.header-container {
+    max-width:1200px;
+    width:100%;
+    font-size:20px;
+    font-weight:900px;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+    .hero-title {
+        border-bottom: none;
+        }
+
+    button {
+        width:fit-content;
+        height:24px;
+        font-size:25px;
+        border: none;
+        color: white;
+        transition: .2s linear;
+        background: transparent;
+        cursor: pointer
+
+
+    }
+
+}
+
+
+        body.page-schedule h1 {
+            color: #ffffff;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+            margin-top: 40px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        
+        body.page-schedule .fs-4 {
+            display: block;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 24px;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.12);
+            width: fit-content;
+            color: #ffffff;
+            letter-spacing: 1px;
+            padding: 6px 12px;
+            margin: 0 0 24px 0;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+   
+        body.page-schedule a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        
+        body.page-schedule strong {
+            color: #ffff00;
+        }
+
+
+        body.page-schedule table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+
+        body.page-schedule th {
+            background-color: rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            padding: 12px;
+            text-align: left;
+            font-weight: 700;
+            border: 2px solid #ffffff;
+        }
+
+
+        body.page-schedule td {
+            padding: 12px;
+            border: 2px solid #ffffff;
+            color: #ffffff;
+        }
+
+
+
+        body.page-schedule tr:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+    
+/* trainers.css */
+body.page-trainers {
+                background-color: #1a4375;
+                color: #ffffff;
+                margin: 0;
+                padding: 0;
+                font-family: 'Montserrat', sans-serif;
+            }
+
+
+             body.page-trainers .header {
+    width:100%;
+    height:90px;
+    background:#122e51;
+
+
+    display:flex;
+    align-items:center;
+    justify-content: center;
+
+.header-container {
+    max-width:1200px;
+    width:100%;
+    background:transparent;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+}
+
+    button {
+        width:fit-content;
+        height:24px;
+        font-size:25px;
+        border: none;
+        color: white;
+        transition: .2s linear;
+        background: transparent;
+        cursor: pointer
+
+
+    }
+}
+
+            body.page-trainers .headline {
+                text-align: center;
+                color: #ffffff;
+                font-size: 2.8rem;
+                font-weight: 900;
+                text-transform: uppercase;
+                margin-top: 40px;
+                margin-bottom: 20px;
+            }
+
+
+            body.page-trainers .trainers {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: center;
+                padding: 20px;
+            }
+
+
+            body.page-trainers .trainers-card {
+
+    background-color: #112d50 !important;
+
+
+    border: none;
+
+    padding: 20px;
+    border-radius: 8px;
+    width: 450px;
+    overflow: auto;
+
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+hr {
+    border-width: 0px;
+    color: rgb(255, 255, 255);
+}
+ 
+body.page-trainers header {
+    text-align: center;
+    padding-top: 40px;
+}
+
+
+body.page-trainers .fs-4 {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+    font-size: 24px;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.12);
+    width: fit-content;
+    color: #ffffff;
+    letter-spacing: 1px;
+    padding: 6px 12px;
+    margin: 0 0 24px 0;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+
+body.page-trainers a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+
+            body.page-trainers .trainers-info {
+                color: #ffffff;
+                margin-bottom: 15px;
+                overflow: hidden;
+            }
+
+
+            body.page-trainers .trainers-info h2 {
+                margin: 0 0 5px 0;
+                font-size: 1.6rem;
+            }
+
+
+            body.page-trainers .trainers-info p {
+                margin: 0 0 10px 0;
+                font-weight: bold;
+                color: yellow;
+            }
+
+
+            body.page-trainers .trainers-info ul {
+                margin: 0;
+                padding-left: 25px;
+                list-style-type: disc !important;
+                color: #ffffff;
+                line-height: 1.6;
+            }
+
+
+            body.page-trainers .trainers-info li {
+                margin-bottom: 8px;
+                font-weight: normal !important;
+                color: #ffffff;
+            }
+
+
+/* Shared site header and action button palette. */
+body.page-abonements .header,
+body.page-auth .header,
+body.page-calculators .header,
+body.page-directions .header,
+body.page-index .header,
+body.page-payment .header,
+body.page-personal-ac .header,
+body.page-registration .header,
+body.page-schedule .header,
+body.page-trainers .header {
+    width: 100%;
+    height: 90px;
+    min-height: 90px;
+    padding: 0 30px;
+    background: #122e51;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+body.page-abonements .header .header-container,
+body.page-auth .header .header-container,
+body.page-calculators .header .header-container,
+body.page-directions .header .header-container,
+body.page-index .header .header-container,
+body.page-payment .header .header-container,
+body.page-personal-ac .header .header-container,
+body.page-registration .header .header-container,
+body.page-schedule .header .header-container,
+body.page-trainers .header .header-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+body.page-abonements .header .hero-title,
+body.page-auth .header .hero-title,
+body.page-calculators .header .hero-title,
+body.page-directions .header .hero-title,
+body.page-index .header .hero-title,
+body.page-payment .header .hero-title,
+body.page-personal-ac .header .hero-title,
+body.page-registration .header .hero-title,
+body.page-schedule .header .hero-title,
+body.page-trainers .header .hero-title {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+body.page-abonements .header button,
+body.page-auth .header button,
+body.page-calculators .header button,
+body.page-directions .header button,
+body.page-index .header button,
+body.page-payment .header button,
+body.page-personal-ac .header button,
+body.page-registration .header button,
+body.page-schedule .header button,
+body.page-trainers .header button {
+    width: fit-content;
+    height: auto;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 6px;
+    background: transparent;
+    color: #ffffff;
+    font: inherit;
+    font-size: 24px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+body.page-auth,
+body.page-registration {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+body.page-auth .wrapper,
+body.page-registration .wrapper {
+    margin: auto;
+}
+

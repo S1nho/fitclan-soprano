@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Оплата прошла успешно</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/payment.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
+<body class="page-payment">
+
+    <div class="header">
+        <div class="header-container">
+            <div></div>
+            <h1 class="hero-title">FIT-CLAN SOPRANO</h1>
+            <a href="{{ url_for('register') }}"><button>Личный кабинет</button></a>
+        </div>
+    </div>
 
     <main class="payment-main">
         <div class="payment-header">
