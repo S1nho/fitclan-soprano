@@ -26,7 +26,6 @@ class Client(db.Model, UserMixin):
     id = db.Column(db.String(120), unique=True, nullable=False, primary_key=True)
     password = db.Column(db.String(255), nullable=False)
     name = db.Column(db.String(50), nullable=False)
-
     email = db.Column(db.String(255), unique=True, nullable=False)
     gender = db.Column(db.String(7), nullable=False)
 
@@ -42,7 +41,24 @@ class Pay(db.Model):
     status = db.Column(db.String(50), nullable=False, default='Не оплачено')
 
 
+class Trener(db.Model, UserMixin):
+    __tablename__ = "trainers"
 
+    id_trainers = db.Column(db.String(120), primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    email = db.Column(db.String(255), unique=True, nullable=False)
+    password_trainers = db.Column(db.String(255), nullable=False)
+    # Закрепляем за тренером направление из справочника
+    id_direction = db.Column(db.Integer, db.ForeignKey('direction.id_direction'), nullable=False)
+
+
+class Direction(db.Model):
+    __tablename__ = "direction"
+
+    id_direction = db.Column(db.Integer, primary_key=True)
+    name_direction = db.Column(db.String(100), unique=True, nullable=False)
+
+    
 
 @login_manager.user_loader
 def load_user(user_id):
