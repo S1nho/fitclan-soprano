@@ -86,14 +86,21 @@ if __name__ == '__main__':
                     id="kapitalina", 
                     name="Капиталина", 
                     email="kapa@mail.ru", 
-                    password=generate_password_hash("123"),
+                    password=generate_password_hash("viper6752"),
                     gender="Женский"
                 ),
                 Client(
                     id="leonid", 
                     name="Леонид", 
                     email="leo@mail.ru", 
-                    password=generate_password_hash("123"),
+                    password=generate_password_hash("loenid1978"),
+                    gender="Мужской"
+                ),
+                Client(
+                    id="yura",
+                    name="Юра",
+                    email="lada@gmail.com",
+                    password=generate_password_hash("lada10777"),
                     gender="Мужской"
                 )
             ])
