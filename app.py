@@ -45,11 +45,12 @@ class Trener(db.Model, UserMixin):
     __tablename__ = "trainers"
 
     id_trainers = db.Column(db.String(120), primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    email = db.Column(db.String(255), unique=True, nullable=False)
+    name_trainer = db.Column(db.String(50), nullable=False)
+    email_trainer = db.Column(db.String(255), unique=True, nullable=False)
     password_trainers = db.Column(db.String(255), nullable=False)
     # Закрепляем за тренером направление из справочника
     id_direction = db.Column(db.Integer, db.ForeignKey('direction.id_direction'), nullable=False)
+    direction = db.relationship('Direction', backref='trainers')
 
 
 class Direction(db.Model):
@@ -58,7 +59,7 @@ class Direction(db.Model):
     id_direction = db.Column(db.Integer, primary_key=True)
     name_direction = db.Column(db.String(100), unique=True, nullable=False)
 
-    
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -71,4 +72,67 @@ register_routes(app, db, Client)
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+
+        if not Client.query.first():
+            from werkzeug.security import generate_password_hash
+            db.session.add_all([
+                Client(
+                    id="kapitalina", 
+                    name="Капиталина", 
+                    email="kapa@mail.ru", 
+                    password=generate_password_hash("123"),
+                    gender="Женский"
+                ),
+                Client(
+                    id="leonid", 
+                    name="Леонид", 
+                    email="leo@mail.ru", 
+                    password=generate_password_hash("123"),
+                    gender="Мужской"
+                )
+            ])
+            db.session.commit()
+
+        if not Direction.query.first():
+            db.session.add_all([
+                Direction(id_direction=1, name_direction='Силовая'),
+                Direction(id_direction=2, name_direction='Бокс'),
+                Direction(id_direction=3, name_direction='Йога'),
+                Direction(id_direction=4, name_direction='Плавание')
+            ])
+            db.session.commit()
+
+        if not Trener.query.first():
+            db.session.add_all([
+                Trener(
+                    id_trainers="trainer_silovaya", 
+                    name_trainer="Максим", 
+                    email_trainer="maks@studio.ru", 
+                    password_trainers="maks123",
+                    id_direction=1
+                ),
+                Trener(
+                    id_trainers="trainer_box", 
+                    name_trainer="Владимир", 
+                    email_trainer="box@studio.ru", 
+                    password_trainers="box123", 
+                    id_direction=2
+                ),
+                Trener(
+                    id_trainers="trainer_yoga", 
+                    name_trainer="Ксения", 
+                    email_trainer="yoga@studio.ru", 
+                    password_trainers="yoga123", 
+                    id_direction=3
+                ),
+                Trener(
+                    id_trainers="trainer_swim", 
+                    name_trainer="Екатерина", 
+                    email_trainer="swim@studio.ru", 
+                    password_trainers="swim123", 
+                    id_direction=4
+                )
+            ])
+            db.session.commit()
+            
     app.run(debug=True)
