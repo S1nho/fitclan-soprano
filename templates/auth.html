@@ -16,6 +16,21 @@
         </div>
         <div class="wrapper">
            <form action="/login" method="POST">
+
+               {% with messages = get_flashed_messages(with_categories=true) %}
+                 {% if messages %}
+                   <div class="flash-container">
+                     {% for category, message in messages %}
+                       <div class="flash-message {{ category }}">
+                         <span class="flash-text">{{ message }}</span>
+                         <button type="button" class="flash-close-btn" onclick="this.parentElement.remove()">&times;</button>
+                       </div>
+                     {% endfor %}
+                   </div>
+                 {% endif %}
+               {% endwith %}
+
+
                <h1 class="registration-title">Авторизация</h1>
 
 
@@ -32,4 +47,27 @@
 
         </div>
 
+         <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const flashMessages = document.querySelectorAll('.flash-message');
+
+            flashMessages.forEach(function(message) {
+
+                setTimeout(function() {
+
+                    message.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                    message.style.opacity = "0";
+                    message.style.transform = "translateY(-5px)";
+
+
+                    setTimeout(function() {
+                        message.remove();
+                    }, 500);
+                }, 4000);
+            });
+        });
+        </script>
+
     </body>
+</html>
