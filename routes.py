@@ -1,6 +1,6 @@
 import uuid
 
-from flask import redirect, render_template, request, url_for
+from flask import flash, redirect, render_template, request, url_for
 from flask_login import (
     current_user,
     login_required,
@@ -86,7 +86,8 @@ def register_routes(app, db, client_model):
 
             user_exists = client_model.query.filter_by(email=email).first()
             if user_exists:
-                return "Этот Email уже занят!"
+                flash("Этот Email уже используется!", "error")
+                return redirect(url_for("register"))
 
             new_client = client_model(
                 id=str(uuid.uuid4()),
@@ -115,7 +116,9 @@ def register_routes(app, db, client_model):
             if client and check_password_hash(client.password, password):
                 login_user(client)
                 return redirect(url_for("personal_ac"))
-            return "Неверный email или пароль"
+
+            flash("Неверный email или пароль", "error")
+            return redirect(url_for("login"))
 
         return render_template("auth.html")
 
