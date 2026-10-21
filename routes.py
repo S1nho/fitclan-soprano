@@ -17,7 +17,7 @@ PLANS = {
 }
 
 
-def register_routes(app, db, client_model):
+def register_routes(app, db, client_model, trainer_model):
     """Register the application's HTTP routes on its Flask app."""
 
     @app.route("/")
@@ -39,6 +39,7 @@ def register_routes(app, db, client_model):
     @app.route("/schedule")
     def schedule():
         return render_template("schedule.html")
+
 
     @app.route("/calculators", methods=["GET", "POST"])
     def calculator():
@@ -70,36 +71,63 @@ def register_routes(app, db, client_model):
     @app.route("/account_click")
     def account_click():
         if current_user.is_authenticated:
+            if hasattr(current_user, 'name_trainer'):
+                return redirect(url_for("trainer_ac"))
             return redirect(url_for("personal_ac"))
         return redirect(url_for("register"))
+
 
     @app.route("/register", methods=["GET", "POST"])
     def register():
         if current_user.is_authenticated:
+            if hasattr(current_user, 'name_trainer'):
+                return redirect(url_for("trainer_ac"))
             return redirect(url_for("personal_ac"))
 
         if request.method == "POST":
-            name = request.form.get("name")
+            role = request.form.get("role") 
             email = request.form.get("email")
             password = request.form.get("password")
-            gender = request.form.get("gender")
 
-            user_exists = client_model.query.filter_by(email=email).first()
-            if user_exists:
-                flash("Этот Email уже используется!", "error")
+            if role == "trainer":
+                # Ищем тренера в вашей таблице Trener по email
+                trainer = trainer_model.query.filter_by(email_trainer=email).first()
+
+                # Проверяем пароль тренера (используем password_trainers из вашей модели)
+                if trainer and trainer.password_trainers == password:
+                    
+                    # Переопределяем get_id под ваше реальное поле id_trainers с буквой s
+                    trainer.get_id = lambda: str(trainer.id_trainers)
+                    
+                    login_user(trainer)
+                    return redirect(url_for("trainer_ac"))  # Перекидываем в кабинет тренера
+
+                # Если данные не подошли
+                flash("Неверный email или пароль тренера", "error")
                 return redirect(url_for("register"))
 
-            new_client = client_model(
-                id=str(uuid.uuid4()),
-                name=name,
-                email=email,
-                password=generate_password_hash(password),
-                gender=gender,
-            )
-            db.session.add(new_client)
-            db.session.commit()
-            login_user(new_client)
-            return redirect(url_for("personal_ac"))
+
+            # --- ЕСЛИ ВЕРСИЯ ДЛЯ КЛИЕНТА (Обычная регистрация) ---
+            else:
+                name = request.form.get("name")
+                gender = request.form.get("gender")
+
+                user_exists = client_model.query.filter_by(email=email).first()
+                if user_exists:
+                    flash("Этот Email уже используется!", "error")
+                    return redirect(url_for("register"))
+
+                new_client = client_model(
+                    id=str(uuid.uuid4()),
+                    name=name,
+                    email=email,
+                    password=generate_password_hash(password),
+                    gender=gender,
+                )
+                db.session.add(new_client)
+                db.session.commit()
+                login_user(new_client)
+                return redirect(url_for("personal_ac"))
 
         return render_template("registration.html")
 
@@ -121,6 +149,11 @@ def register_routes(app, db, client_model):
             return redirect(url_for("login"))
 
         return render_template("auth.html")
+
+    @app.route("/trainer_ac")
+    @login_required
+    def trainer_ac():
+        return render_template("trainer_ac.html", current_user=current_user)
 
     @app.route("/personal_ac")
     @login_required

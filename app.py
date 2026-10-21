@@ -63,11 +63,17 @@ class Direction(db.Model):
 
 @login_manager.user_loader
 def load_user(user_id):
+    trainer = Trener.query.filter_by(id_trainers=user_id).first()
+    if trainer:
+        trainer.get_id = lambda: str(trainer.id_trainers)
+        return trainer
+
     return Client.query.get(user_id)
+
 
 from routes import register_routes
 
-register_routes(app, db, Client)
+register_routes(app, db, Client, Trener)
 
 if __name__ == '__main__':
     with app.app_context():
@@ -108,28 +114,28 @@ if __name__ == '__main__':
                     id_trainers="trainer_silovaya", 
                     name_trainer="Максим", 
                     email_trainer="maks@studio.ru", 
-                    password_trainers="maks123",
+                    password_trainers="maks123456",
                     id_direction=1
                 ),
                 Trener(
                     id_trainers="trainer_box", 
                     name_trainer="Владимир", 
                     email_trainer="box@studio.ru", 
-                    password_trainers="box123", 
+                    password_trainers="box123456", 
                     id_direction=2
                 ),
                 Trener(
                     id_trainers="trainer_yoga", 
                     name_trainer="Ксения", 
                     email_trainer="yoga@studio.ru", 
-                    password_trainers="yoga123", 
+                    password_trainers="yoga123456", 
                     id_direction=3
                 ),
                 Trener(
                     id_trainers="trainer_swim", 
                     name_trainer="Екатерина", 
                     email_trainer="swim@studio.ru", 
-                    password_trainers="swim123", 
+                    password_trainers="swim123456", 
                     id_direction=4
                 )
             ])
