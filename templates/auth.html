@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <title>Авторизация</title>
+        <link href="https://googleapis.com" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body class="page-auth">
+        <div class="header">
+            <div class="header-container">
+                <div></div>
+                <h1 class="hero-title">FIT-CLAN SOPRANO</h1>
+                <a href="{{ url_for('register') }}"><button>Личный кабинет</button></a>
+            </div>
+        </div>
+        <div class="wrapper">
+           <form action="/login" method="POST">
+
+               {% with messages = get_flashed_messages(with_categories=true) %}
+                 {% if messages %}
+                   <div class="flash-container">
+                     {% for category, message in messages %}
+                       <div class="flash-message {{ category }}">
+                         <span class="flash-text">{{ message }}</span>
+                         <button type="button" class="flash-close-btn" onclick="this.parentElement.remove()">&times;</button>
+                       </div>
+                     {% endfor %}
+                   </div>
+                 {% endif %}
+               {% endwith %}
+
+
+               <h1 class="registration-title">Авторизация</h1>
+
+
+               <div class="input-box">
+                   <input type="email" name="email" placeholder="Почта" required>
+               </div>
+
+               <div class="input-box">
+                   <input type="password" name="password" placeholder="Пароль" required>
+               </div>
+
+               <button type="submit" class="btn">Войти</button>
+           </form>
+
+        </div>
+
+         <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const flashMessages = document.querySelectorAll('.flash-message');
+
+            flashMessages.forEach(function(message) {
+
+                setTimeout(function() {
+
+                    message.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                    message.style.opacity = "0";
+                    message.style.transform = "translateY(-5px)";
+
+
+                    setTimeout(function() {
+                        message.remove();
+                    }, 500);
+                }, 4000);
+            });
+        });
+        </script>
+
+    </body>
+</html>

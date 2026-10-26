@@ -41,7 +41,8 @@ def register_routes(app, db, client_model, trainer_model):
     def schedule():
         return render_template("schedule.html")
 
-    @app.route('/calculator', methods=['GET', 'POST'])
+
+    @app.route("/calculators", methods=["GET", "POST"])
     def calculator():
         imt = None
         calories = None

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <title>Регистрация</title>
+        <link href="https://googleapis.com" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <title>Регистрация</title>
+    </head>
+    <body class="page-registration">
+        <div class="header">
+            <div class="header-container">
+                <div></div>
+                <h1 class="hero-title">FIT-CLAN SOPRANO</h1>
+                <a href="{{ url_for('register') }}"><button>Личный кабинет</button></a>
+            </div>
+        </div>
+        <div class="wrapper">
+           <form action="/register" method="POST">
+
+               {% with messages = get_flashed_messages(with_categories=true) %}
+                 {% if messages %}
+                   <div class="flash-container">
+                     {% for category, message in messages %}
+                       <div class="flash-message {{ category }}">
+                         <span class="flash-text">{{ message }}</span>
+                         <button type="button" class="flash-close-btn" onclick="this.parentElement.remove()">&times;</button>
+                       </div>
+                     {% endfor %}
+                   </div>
+                 {% endif %}
+               {% endwith %}
+
+
+                <h1 class="registration-title" id="form-title">Регистрация</h1>
+
+
+               <div class="role-switcher">
+                   <button type="button" class="role-btn active" id="btn-client" onclick="switchRole('client')">Клиент</button>
+                   <button type="button" class="role-btn" id="btn-trainer" onclick="switchRole('trainer')">Тренер</button>
+               </div>
+
+
+
+               <input type="hidden" name="role" id="user-role" value="client">
+               <div class="input-box" id="name-box">
+                   <input type="text" name="name" minlength="2" maxlength="50" placeholder="Имя" required>
+               </div>
+
+               <div class="input-box">
+                   <input type="email" name="email" placeholder="Почта" required>
+               </div>
+
+               <div class="input-box">
+                   <input type="password" name="password"
+                       minlength="8"
+                       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                       title="Пароль должен быть не менее 8 символов и содержать как минимум одну латинскую букву и одну цифру"
+                       placeholder="Пароль"
+                       required>
+               </div>
+
+               <div class="gender-box">
+                    <span class="gender-title">Пол:</span>
+                    <div class="gender-inputs">
+                        <label class="gender-label">
+                            <input type="radio" name="gender" value="male" required>
+                            <span class="custom-radio"></span> Мужской
+                        </label>
+                        <label class="gender-label">
+                            <input type="radio" name="gender" value="female" required>
+                            <span class="custom-radio"></span> Женский
+                        </label>
+                    </div>
+                </div>
+
+               <button type="submit" class="btn" id="submit-btn">Зарегистрироваться</button>
+
+               <div class="login-link" id="login-link-box">
+                   <p>Уже есть аккаунт? <a href="{{ url_for('login') }}">Войти</a></p>
+               </div>
+           </form>
+        </div>
+
+
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const flashMessages = document.querySelectorAll('.flash-message');
+
+            flashMessages.forEach(function(message) {
+                setTimeout(function() {
+                    message.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                    message.style.opacity = "0";
+                    message.style.transform = "translateY(-5px)";
+
+                    setTimeout(function() {
+                        message.remove();
+                    }, 500);
+                }, 4000);
+            });
+        });
+
+        function switchRole(role) {
+    const btnClient = document.getElementById('btn-client');
+    const btnTrainer = document.getElementById('btn-trainer');
+    const roleInput = document.getElementById('user-role');
+    const genderBox = document.querySelector('.gender-box');
+    const nameInputBox = document.getElementById('name-box');
+
+
+    const formTitle = document.getElementById('form-title');
+    const submitBtn = document.getElementById('submit-btn');
+    const loginLinkBox = document.getElementById('login-link-box');
+
+    roleInput.value = role;
+
+    if (role === 'trainer') {
+        btnTrainer.classList.add('active');
+        btnClient.classList.remove('active');
+
+
+        if (genderBox) genderBox.style.display = 'none';
+        if (nameInputBox) nameInputBox.style.display = 'none';
+
+        genderBox.querySelectorAll('input').forEach(i => i.required = false);
+        if (nameInputBox) nameInputBox.querySelector('input').required = false;
+
+
+        if (formTitle) formTitle.innerText = 'Авторизация';
+        if (submitBtn) submitBtn.innerText = 'Войти';
+        if (loginLinkBox) loginLinkBox.style.display = 'none';
+
+    } else {
+        btnClient.classList.add('active');
+        btnTrainer.classList.remove('active');
+
+
+        if (genderBox) genderBox.style.display = 'block';
+        if (nameInputBox) nameInputBox.style.display = 'block';
+
+        genderBox.querySelectorAll('input').forEach(i => i.required = true);
+        if (nameInputBox) nameInputBox.querySelector('input').required = true;
+
+
+        if (formTitle) formTitle.innerText = 'Регистрация';
+        if (submitBtn) submitBtn.innerText = 'Зарегистрироваться';
+        if (loginLinkBox) loginLinkBox.style.display = 'block';
+    }
+}
+
+        </script>
+
+    </body>
+</html>
+
+
+

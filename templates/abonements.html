@@ -3,18 +3,29 @@
     <head>
         <meta charset="UTF-8">
         <title>Абонементы</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/abonements.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
         <link href="https://googleapis.com" rel="stylesheet">
     </head>
-    <body>
+    <body class="page-abonements">
         <header> 
-            <div class="fs-4"><a href="{{ url_for('index') }}" class="btn-first"><b>Fit-clan Soprano</b></a></div> 
+             <div class="header">
+            <div class="header-container">
+                <div></div>
+                <a href="{{ url_for('index') }}" style="text-decoration: none;">
+                    <h1 class="hero-title">FIT-CLAN SOPRANO</h1>
+                </a>
+                <a href="{{ url_for('register') }}">
+                    <button>Личный кабинет</button>
+                </a>
+            </div>
+        </div>
             <div class="pricing-header"> 
             <h1 class="text-body-emphasis">АБОНЕМЕНТЫ</h1> 
             <p class="text-body-secondary">Наш фит-клуб предоставляет на выбор 3 абонемента, в которых вы сможете определить, что для вас выгодней</p> </div> 
         </header>
         <main> 
             <div class="row text-center"> 
+            <a href="{{ url_for('payment_page', plan_id='month') }}" class="click-card">
             <div class="col"> 
             <div class="card mb"> 
             <div class="card-header"> 
@@ -28,7 +39,9 @@
                     <li>Поддержка от нашей команды</li> 
                     <li>Бесплатный кулер с водой</li> 
                 </ul> 
+            </a>
             </div> </div> </div> 
+            <a href="{{ url_for('payment_page', plan_id='six_months') }}" class="click-card">
             <div class="col"> 
             <div class="card mb"> 
             <div class="card-header"> 
@@ -43,7 +56,10 @@
                     <li>Поддержка от нашей команды</li> 
                     <li>Доступ к буфету</li> 
                 </ul> 
-            </div> </div> </div> <div class="col"> 
+            </a>
+            </div> </div> </div> 
+            <a href="{{ url_for('payment_page', plan_id='year') }}" class="click-card">
+                <div class="col"> 
                 <div class="card mb"> 
                 <div class="card-header"> 
                 <h4 class="fw-normal">Стать спортсменом</h4> </div> 
@@ -56,7 +72,8 @@
                     <li>Приоритетная очередь в зале</li> 
                     <li>Сопровождение от нас</li> 
                     <li>Комната отдыха</li> 
-                </ul>                                        
+                </ul> 
+            </a>                                       
             </div> </div> </div> </div>
         </main>
     </body>
