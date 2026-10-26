@@ -36,6 +36,14 @@
             </select>
         </label>
 
+        <label>Ваша цель:
+            <select name="goal">
+                <option value="Похудеть">Похудеть</option>
+                <option value="Поддерживать форму">Поддерживать форму</option>
+                <option value="Набрать массу">Набрать массу</option>
+            </select>
+        </label>
+
         <button type="submit">Рассчитать</button>
     </form>
 
@@ -44,6 +52,17 @@
         <p>Ваш ИМТ: <strong>{{ imt }}</strong></p>
         <p>Норма калорий: <strong>{{ calories }} ккал/день</strong></p>
         <p class="advice">{{ advice }}</p>
+
+        {% if ai_plan %}
+        <div style="margin-top: 20px; padding: 15px; border: 2px dashed #ffff00; border-radius: 6px; background: rgba(255,255,255,0.05);">
+            <h3 style="color: #ffff00; margin-top: 0;">🤖 Персональный план от ИИ:</h3>
+            <p style="white-space: pre-wrap;">{{ ai_plan }}</p>
+        </div>
+        {% endif %}
+<<<<<<< Updated upstream
+
+=======
+>>>>>>> Stashed changes
     </div>
     {% endif %}
 

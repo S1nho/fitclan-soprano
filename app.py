@@ -3,6 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin
 
+from openai import OpenAI
+
 app = Flask(__name__)
 
 
@@ -17,11 +19,47 @@ migrate = Migrate(app, db)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
+@app.route('/calculator', methods=['GET', 'POST'])
+def calculator():
+    imt = None
+    calories = None
+    advice = None
+    ai_plan = None
 
+    if request.method == 'POST':
+        weight = float(request.form['weight'])
+        height_cm = float(request.form['height'])
+        height = height_cm / 100
+        activity = int(request.form['activity'])
+        goal = request.form['goal']
 
+        try:
+            client = OpenAI(
+                base_url="https://text.pollinations.ai/openai",
+                api_key="no_key_needed",
+            )
+
+            prompt = (
+                f"Ты профессиональный фитнес-тренер. Составь краткий план тренировок на неделю "
+                f"для человека с ИМТ {imt}, целью '{goal}' и дневной нормой {calories} ккал. "
+                f"Если ИМТ меньше 18.5, а цель похудеть, вежливо предупреди, что это опасно и предложи план по набору"
+                f"Ответь 3-4 предложениями, без лишних вступлений, на русском"
+            )
+
+            response = client.chat.completions.create(
+                model="openai",
+                messages=[{"role": "user", "content": prompt}],
+            )
+            ai_plan = response.choices[0].message.content
+
+        except Exception as e:
+            print(f"Ошибка ИИ: {e}")
+            ai_plan = f"Ошибка ИИ: {e}"
+
+    return render_template('calculators.html', imt=imt, calories=calories, advice=advice, ai_plan=ai_plan)
+  
 class Client(db.Model, UserMixin):
     __tablename__ = 'client'
-
 
     id = db.Column(db.String(120), unique=True, nullable=False, primary_key=True)
     password = db.Column(db.String(255), nullable=False)

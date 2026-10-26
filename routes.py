@@ -8,6 +8,7 @@ from flask_login import (
     logout_user,
 )
 from werkzeug.security import check_password_hash, generate_password_hash
+from openai import OpenAI
 
 
 PLANS = {
@@ -46,11 +47,14 @@ def register_routes(app, db, client_model, trainer_model):
         imt = None
         calories = None
         advice = None
+        ai_plan = None
 
-        if request.method == "POST":
-            weight = float(request.form["weight"])
-            height = float(request.form["height"]) / 100
-            activity = int(request.form["activity"])
+        if request.method == 'POST':
+            weight = float(request.form['weight'])
+            height_cm = float(request.form['height'])
+            height = height_cm / 100
+            activity = int(request.form['activity'])
+            goal = request.form['goal']
 
             imt = round(weight / (height * height), 2)
             calories = round(weight * activity)
@@ -64,9 +68,32 @@ def register_routes(app, db, client_model, trainer_model):
             else:
                 advice = "У вас ожирение. Рекомендуем обратиться к врачу."
 
-        return render_template(
-            "calculators.html", imt=imt, calories=calories, advice=advice
-        )
+            # --- Твой код ИИ ---
+            try:
+                client = OpenAI(
+                    base_url="https://text.pollinations.ai/openai",
+                    api_key="no_key_needed",
+                )
+
+                prompt = (
+                    f"Ты профессиональный фитнес-тренер. Составь краткий план тренировок на неделю "
+                    f"для человека с ИМТ {imt}, целью '{goal}' и дневной нормой {calories} ккал. "
+                    f"Обязательно пиши ответ строго на русском языке. "
+                    f"Если ИМТ меньше 18.5, а цель 'Похудеть', предупреди, что это опасно, и предложи план для набора массы. "
+                    f"Ответь 3-4 предложениями, без лишних вступлений."
+                )
+
+                response = client.chat.completions.create(
+                    model="openai",
+                    messages=[{"role": "user", "content": prompt}],
+                )
+                ai_plan = response.choices[0].message.content
+
+            except Exception as e:
+                print(f"Ошибка ИИ: {e}")
+                ai_plan = f"Ошибка ИИ: {e}"
+
+        return render_template('calculators.html', imt=imt, calories=calories, advice=advice, ai_plan=ai_plan)
 
     @app.route("/account_click")
     def account_click():
