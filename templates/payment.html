@@ -25,10 +25,10 @@
         
         <section class="payment-card" aria-labelledby="plan-title">
             <div class="payment-card-header">
-                <h2 id="plan-title">Пробный</h2>
+                <h2 id="plan-title">{{ plan.name }}</h2>
             </div>
             <div class="payment-card-body">
-                <p class="payment-price">10 000 ₽<span> / месяц</span></p>
+                <p class="payment-price">{{ plan.price }}₽<span> за {{ plan.duration }}</span></p>
                 <form action="{{ url_for('payment_success') }}" method="post">
                     <button class="pay-button" type="submit">Оплатить абонемент</button>
                 </form>

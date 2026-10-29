@@ -78,6 +78,7 @@ register_routes(app, db, Client, Trener)
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+<<<<<<< Updated upstream
 
         if not Client.query.first():
             from werkzeug.security import generate_password_hash
@@ -148,4 +149,6 @@ if __name__ == '__main__':
             ])
             db.session.commit()
             
+=======
+>>>>>>> Stashed changes
     app.run(debug=True)
