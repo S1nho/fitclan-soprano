@@ -31,6 +31,8 @@ pip install flask
 pip install SQLAlchemy
 pip install Migration
 pip install Flask-Login
+pip install openai
+
 # 4. Запустите app.py
 
 # ПЕРЕЧЕНЬ РЕАЛИЗОВАННЫХ МАРШРУТОВ
