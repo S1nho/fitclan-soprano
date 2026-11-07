@@ -18,7 +18,7 @@ PLANS = {
 }
 
 
-def register_routes(app, db, client_model, trainer_model):
+def register_routes(app, db, client_model, trainer_model, payment_model):
     """Register the application's HTTP routes on its Flask app."""
 
     @app.route("/")
@@ -196,11 +196,34 @@ def register_routes(app, db, client_model, trainer_model):
     @app.route("/payment/<plan_id>")
     @login_required
     def payment_page(plan_id):
+        
+        if hasattr(current_user, 'name_trainer'):
+            flash("Тренеры не могут покупать клиентские абонементы", "error")
+            return redirect(url_for("trainer_ac"))
+
         plan = PLANS.get(plan_id)
         if plan is None:
             return "Абонемент не найден", 404
-        return render_template("payment.html", plan=plan)
+        return render_template("payment.html", plan=plan, plan_id=plan_id)
 
-    @app.route("/payment_success.html", methods=["GET", "POST"])
-    def payment_success():
-        return render_template("payment_success.html")
+
+    @app.route("/payment_success/<plan_id>", methods=["POST"])
+    @login_required
+    def payment_success(plan_id):
+        if hasattr(current_user, 'name_trainer'):
+            return redirect(url_for("trainer_ac"))
+
+        plan = PLANS.get(plan_id)
+        if plan is None:
+            return "Абонемент не найден", 404
+
+        new_pay = payment_model(
+            id_client=current_user.id,
+            abonent_name=plan["name"],
+            duration=plan["duration"],
+            summa=plan["price"]
+        )
+        db.session.add(new_pay)
+        db.session.commit()
+
+        return render_template("payment_success.html", plan=plan)
