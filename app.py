@@ -23,7 +23,7 @@ login_manager.login_view = 'login'
 class Client(db.Model, UserMixin):
     __tablename__ = 'client'
 
-    id = db.Column(db.String(120), unique=True, nullable=False, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     password = db.Column(db.String(255), nullable=False)
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
@@ -34,17 +34,17 @@ class Pay(db.Model):
     __tablename__ = 'payment'
 
     id = db.Column(db.String(120), unique=True, nullable=False, primary_key=True)
-    email = db.Column(db.String(120), db.ForeignKey('client.email'), nullable=False)
+    id_abonent = db.Column(db.Integer, db.ForeignKey('abonent.id_abonent'), nullable=False)
+    id_client = db.Column(db.String(120), db.ForeignKey('client.id'), nullable=False)
     payment = db.Column(db.Boolean, default=False, nullable=False)
     summa = db.Column(db.Integer, nullable=False)
-    tarif = db.Column(db.String(50), nullable=False)
     status = db.Column(db.String(50), nullable=False, default='Не оплачено')
 
 
 class Trener(db.Model, UserMixin):
     __tablename__ = "trainers"
 
-    id_trainers = db.Column(db.String(120), primary_key=True)
+    id_trainers = db.Column(db.Integer, primary_key=True)
     name_trainer = db.Column(db.String(50), nullable=False)
     email_trainer = db.Column(db.String(255), unique=True, nullable=False)
     password_trainers = db.Column(db.String(255), nullable=False)
@@ -58,6 +58,13 @@ class Direction(db.Model):
 
     id_direction = db.Column(db.Integer, primary_key=True)
     name_direction = db.Column(db.String(100), unique=True, nullable=False)
+
+
+class Abonent(db.Model):
+    __tablename__ = 'abonent'
+
+    id_abonent = db.Column(db.Integer, primary_key=True, unique=True)
+    name_abonent = db.Column(db.String(50), nullable=False)
 
 
 
@@ -78,7 +85,6 @@ register_routes(app, db, Client, Trener)
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-<<<<<<< Updated upstream
 
         if not Client.query.first():
             from werkzeug.security import generate_password_hash
@@ -149,6 +155,4 @@ if __name__ == '__main__':
             ])
             db.session.commit()
             
-=======
->>>>>>> Stashed changes
     app.run(debug=True)
