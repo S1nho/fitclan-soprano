@@ -65,6 +65,21 @@
             <p><a href="{{ url_for('shop') }}" style="text-decoration: none; color: inherit; font-weight: bold;">Магазин</a> · <a href="{{ url_for('abonements') }}" style="text-decoration: none; color: inherit; font-weight: bold;">Абонементы</a></p>
         </section>
 
+        <div class="info-group">
+            <span class="info-label">Мои абонементы:</span>
+            {% if current_user.payments %}
+                {% for pay in current_user.payments %}
+                    <div class="info-value" style="margin-top: 6px;">
+                        <strong>{{ pay.abonent_name }}</strong> ({{ pay.duration }}) — {{ pay.summa }}₽
+                        <br>
+                        <small>Куплен: {{ pay.created_at.strftime('%d.%m.%Y') }}</small>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <span class="info-value">Нет активных абонементов</span>
+            {% endif %}
+        </div>
+
         <div class="nav-links">
 
         <a href="{{ url_for('logout') }}" class="btn btn-logout">Выйти</a>

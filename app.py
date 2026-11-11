@@ -5,7 +5,7 @@ from sqlalchemy import inspect, text
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin
-
+from datetime import datetime
 from openai import OpenAI
 
 app = Flask(__name__)
@@ -20,7 +20,7 @@ migrate = Migrate(app, db)
 
 
 login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+login_manager.login_view = 'register'
 
 
 class Client(db.Model, UserMixin):
@@ -31,14 +31,16 @@ class Client(db.Model, UserMixin):
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     gender = db.Column(db.String(7), nullable=False)
+    client = db.relationship('Client', backref='payments')
 
 
 class Pay(db.Model):
     __tablename__ = 'payment'
 
-    id = db.Column(db.String(120), unique=True, nullable=False, primary_key=True)
-    email = db.Column(db.String(120), db.ForeignKey('client.email'), nullable=False)
-    payment = db.Column(db.Boolean, default=False, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    id_client = db.Column(db.String(120), db.ForeignKey('client.id'), nullable=False)
+    abonent_name = db.Column(db.String(100), nullable=False)
+    duration = db.Column(db.String(50), nullable=False)
     summa = db.Column(db.Integer, nullable=False)
     tarif = db.Column(db.String(50), nullable=False)
     status = db.Column(db.String(50), nullable=False, default='Не оплачено')
@@ -71,6 +73,9 @@ class ProductPurchase(db.Model):
     product_id = db.Column(db.String(50), db.ForeignKey('product.id'), nullable=False)
     product = db.relationship('Product')
     payment = db.relationship('Pay')
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    
 
 
 class Trener(db.Model, UserMixin):
@@ -80,7 +85,6 @@ class Trener(db.Model, UserMixin):
     name_trainer = db.Column(db.String(50), nullable=False)
     email_trainer = db.Column(db.String(255), unique=True, nullable=False)
     password_trainers = db.Column(db.String(255), nullable=False)
-    # Закрепляем за тренером направление из справочника
     id_direction = db.Column(db.Integer, db.ForeignKey('direction.id_direction'), nullable=False)
     direction = db.relationship('Direction', backref='trainers')
 
@@ -90,6 +94,13 @@ class Direction(db.Model):
 
     id_direction = db.Column(db.Integer, primary_key=True)
     name_direction = db.Column(db.String(100), unique=True, nullable=False)
+
+
+class Abonent(db.Model):
+    __tablename__ = 'abonent'
+
+    id_abonent = db.Column(db.Integer, primary_key=True, unique=True)
+    name_abonent = db.Column(db.String(50), nullable=False)
 
 
 
@@ -143,6 +154,7 @@ def init_shop_command():
     """Initialize the shop in an existing application database."""
     init_shop()
     print('Магазин готов: таблицы созданы, товары добавлены.')
+register_routes(app, db, Client, Trener, Pay)
 
 if __name__ == '__main__':
     with app.app_context():
@@ -214,6 +226,46 @@ if __name__ == '__main__':
                     email_trainer="swim@studio.ru", 
                     password_trainers="swim123456", 
                     id_direction=4
+                )
+            ])
+            db.session.commit()
+
+        if not Abonent.query.first():
+            db.session.add_all([
+                Abonent(
+                    id_abonent=1,
+                    name_abonent="Попробовать"
+                ),
+                Abonent(
+                    id_abonent=2,
+                    name_abonent="Похудеть к лету"
+                ),
+                Abonent(
+                    id_abonent=3,
+                    name_abonent="Стать спортсменом"
+                )
+            ])
+            db.session.commit()
+
+        if not Pay.query.first():
+            db.session.add_all([
+                Pay(
+                    id_client="kapitalina",
+                    abonent_name="Попробовать",
+                    duration="1 месяц",
+                    summa=1000
+                ),
+                Pay(
+                    id_client="leonid",
+                    abonent_name="Похудеть к лету",
+                    duration="3 месяца",
+                    summa=3000
+                ),
+                Pay(
+                    id_client="yura",
+                    abonent_name="Стать спортсменом",
+                    duration="6 месяцев",
+                    summa=6000
                 )
             ])
             db.session.commit()
