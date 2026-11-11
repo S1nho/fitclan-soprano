@@ -1,11 +1,9 @@
-<!DOCTYPE html>
 <html lang="ru">
     <head>
         <meta charset="utf-8">
         <title>Регистрация</title>
         <link href="https://googleapis.com" rel="stylesheet">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-        <title>Регистрация</title>
     </head>
     <body class="page-registration">
         <div class="header">
@@ -31,28 +29,32 @@
                  {% endif %}
                {% endwith %}
 
-
-                <h1 class="registration-title" id="form-title">Регистрация</h1>
-
+               <h1 class="registration-title" id="form-title">Регистрация</h1>
 
                <div class="role-switcher">
                    <button type="button" class="role-btn active" id="btn-client" onclick="switchRole('client')">Клиент</button>
                    <button type="button" class="role-btn" id="btn-trainer" onclick="switchRole('trainer')">Тренер</button>
                </div>
 
-
-
                <input type="hidden" name="role" id="user-role" value="client">
+
                <div class="input-box" id="name-box">
-                   <input type="text" name="name" minlength="2" maxlength="50" placeholder="Имя" required>
+                   <input type="text" name="name" minlength="2" maxlength="50"
+                          pattern="^[А-Яа-яЁё\s-]+$"
+                          title="Имя должно содержать только русские буквы"
+                          placeholder="Имя" required>
                </div>
 
                <div class="input-box">
-                   <input type="email" name="email" placeholder="Почта" required>
+                   <input type="email" name="email"
+                          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                          title="Введите корректный email (например: user@mail.ru)"
+                          placeholder="Почта" required>
                </div>
 
                <div class="input-box">
                    <input type="password" name="password"
+                       autocomplete="new-password"
                        minlength="8"
                        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                        title="Пароль должен быть не менее 8 символов и содержать как минимум одну латинскую букву и одну цифру"
@@ -82,7 +84,6 @@
            </form>
         </div>
 
-
         <script>
         document.addEventListener("DOMContentLoaded", function() {
             const flashMessages = document.querySelectorAll('.flash-message');
@@ -101,53 +102,55 @@
         });
 
         function switchRole(role) {
-    const btnClient = document.getElementById('btn-client');
-    const btnTrainer = document.getElementById('btn-trainer');
-    const roleInput = document.getElementById('user-role');
-    const genderBox = document.querySelector('.gender-box');
-    const nameInputBox = document.getElementById('name-box');
+            const btnClient = document.getElementById('btn-client');
+            const btnTrainer = document.getElementById('btn-trainer');
+            const roleInput = document.getElementById('user-role');
+            const genderBox = document.querySelector('.gender-box');
+            const nameInputBox = document.getElementById('name-box');
+
+            const formTitle = document.getElementById('form-title');
+            const submitBtn = document.getElementById('submit-btn');
+            const loginLinkBox = document.getElementById('login-link-box');
+
+            roleInput.value = role;
+
+            if (role === 'trainer') {
+                btnTrainer.classList.add('active');
+                btnClient.classList.remove('active');
+
+                if (genderBox) genderBox.style.display = 'none';
 
 
-    const formTitle = document.getElementById('form-title');
-    const submitBtn = document.getElementById('submit-btn');
-    const loginLinkBox = document.getElementById('login-link-box');
+                if (nameInputBox) {
+                    nameInputBox.style.display = 'none';
+                    const nameInput = nameInputBox.querySelector('input');
+                    nameInput.required = false;
+                    nameInput.value = '';
+                }
 
-    roleInput.value = role;
+                genderBox.querySelectorAll('input').forEach(i => i.required = false);
 
-    if (role === 'trainer') {
-        btnTrainer.classList.add('active');
-        btnClient.classList.remove('active');
+                if (formTitle) formTitle.innerText = 'Авторизация';
+                if (submitBtn) submitBtn.innerText = 'Войти';
+                if (loginLinkBox) loginLinkBox.style.display = 'none';
 
+            } else {
+                btnClient.classList.add('active');
+                btnTrainer.classList.remove('active');
 
-        if (genderBox) genderBox.style.display = 'none';
-        if (nameInputBox) nameInputBox.style.display = 'none';
+                if (genderBox) genderBox.style.display = 'block';
+                if (nameInputBox) {
+                    nameInputBox.style.display = 'block';
+                    nameInputBox.querySelector('input').required = true;
+                }
 
-        genderBox.querySelectorAll('input').forEach(i => i.required = false);
-        if (nameInputBox) nameInputBox.querySelector('input').required = false;
+                genderBox.querySelectorAll('input').forEach(i => i.required = true);
 
-
-        if (formTitle) formTitle.innerText = 'Авторизация';
-        if (submitBtn) submitBtn.innerText = 'Войти';
-        if (loginLinkBox) loginLinkBox.style.display = 'none';
-
-    } else {
-        btnClient.classList.add('active');
-        btnTrainer.classList.remove('active');
-
-
-        if (genderBox) genderBox.style.display = 'block';
-        if (nameInputBox) nameInputBox.style.display = 'block';
-
-        genderBox.querySelectorAll('input').forEach(i => i.required = true);
-        if (nameInputBox) nameInputBox.querySelector('input').required = true;
-
-
-        if (formTitle) formTitle.innerText = 'Регистрация';
-        if (submitBtn) submitBtn.innerText = 'Зарегистрироваться';
-        if (loginLinkBox) loginLinkBox.style.display = 'block';
-    }
-}
-
+                if (formTitle) formTitle.innerText = 'Регистрация';
+                if (submitBtn) submitBtn.innerText = 'Зарегистрироваться';
+                if (loginLinkBox) loginLinkBox.style.display = 'block';
+            }
+        }
         </script>
 
     </body>
