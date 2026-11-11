@@ -1,11 +1,11 @@
 from datetime import datetime, timedelta, timezone
+import uuid
 
 from flask import Flask
 from sqlalchemy import inspect, text
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin
-from datetime import datetime
 from openai import OpenAI
 
 app = Flask(__name__)
@@ -31,16 +31,15 @@ class Client(db.Model, UserMixin):
     name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(255), unique=True, nullable=False)
     gender = db.Column(db.String(7), nullable=False)
-    client = db.relationship('Client', backref='payments')
 
 
 class Pay(db.Model):
     __tablename__ = 'payment'
 
-    id = db.Column(db.Integer, primary_key=True)
-    id_client = db.Column(db.String(120), db.ForeignKey('client.id'), nullable=False)
-    abonent_name = db.Column(db.String(100), nullable=False)
-    duration = db.Column(db.String(50), nullable=False)
+    id = db.Column(db.String(120), primary_key=True, default=lambda: str(uuid.uuid4()))
+    email = db.Column(db.String(120), db.ForeignKey('client.email'), nullable=False)
+    client = db.relationship('Client', backref='payments')
+    payment = db.Column(db.Boolean, default=False, nullable=False)
     summa = db.Column(db.Integer, nullable=False)
     tarif = db.Column(db.String(50), nullable=False)
     status = db.Column(db.String(50), nullable=False, default='Не оплачено')
@@ -73,7 +72,6 @@ class ProductPurchase(db.Model):
     product_id = db.Column(db.String(50), db.ForeignKey('product.id'), nullable=False)
     product = db.relationship('Product')
     payment = db.relationship('Pay')
-    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     
 
@@ -154,7 +152,6 @@ def init_shop_command():
     """Initialize the shop in an existing application database."""
     init_shop()
     print('Магазин готов: таблицы созданы, товары добавлены.')
-register_routes(app, db, Client, Trener, Pay)
 
 if __name__ == '__main__':
     with app.app_context():
@@ -250,21 +247,18 @@ if __name__ == '__main__':
         if not Pay.query.first():
             db.session.add_all([
                 Pay(
-                    id_client="kapitalina",
-                    abonent_name="Попробовать",
-                    duration="1 месяц",
+                    email="kapa@mail.ru",
+                    tarif="Попробовать",
                     summa=1000
                 ),
                 Pay(
-                    id_client="leonid",
-                    abonent_name="Похудеть к лету",
-                    duration="3 месяца",
+                    email="leo@mail.ru",
+                    tarif="Похудеть к лету",
                     summa=3000
                 ),
                 Pay(
-                    id_client="yura",
-                    abonent_name="Стать спортсменом",
-                    duration="6 месяцев",
+                    email="lada@gmail.com",
+                    tarif="Стать спортсменом",
                     summa=6000
                 )
             ])

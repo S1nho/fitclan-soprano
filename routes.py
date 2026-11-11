@@ -1,4 +1,4 @@
-import re  # ДОБАВЛЕНО: модуль регулярных выражений для строгой валидации
+import re  
 import uuid
 import secrets
 
@@ -222,7 +222,13 @@ def register_routes(app, db, client_model, trainer_model, product_model, payment
         purchases = (payment_model.query.filter_by(email=current_user.email)
                      .order_by(payment_model.created_at.desc().nullslast(), payment_model.id.desc())
                      .all())
-        return render_template("personal_ac.html", current_user=current_user, purchases=purchases)
+        product_payment_ids = {
+            row.payment_id for row in purchase_model.query.join(payment_model)
+            .filter(payment_model.email == current_user.email).all()
+        }
+        membership_purchases = [p for p in purchases if p.payment and p.id not in product_payment_ids]
+        return render_template("personal_ac.html", current_user=current_user, purchases=purchases,
+                               membership_purchases=membership_purchases)
 
     @app.route("/logout")
     @login_required

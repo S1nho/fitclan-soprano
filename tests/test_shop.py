@@ -64,7 +64,7 @@ class ShopTests(unittest.TestCase):
         self.assertEqual(response.status_code, 302)
         purchase = ProductPurchase.query.one()
         self.assertEqual(purchase.product_id, 'bottle')
-        self.assertEqual(purchase.payment.summa, 1200)
+        self.assertEqual(purchase.payment.summa, db.session.get(Product, 'bottle').price)
         self.assertEqual(purchase.payment.email, 'buyer@example.com')
         self.assertTrue(purchase.payment.payment)
         self.assertIsNotNone(purchase.payment.created_at)
@@ -133,7 +133,8 @@ class ShopTests(unittest.TestCase):
         db.session.commit()
         history = self.client.get('/personal_ac')
         self.assertEqual(history.status_code, 200)
-        for text in ('Бутылка SOPRANO', 'Максимум возможностей', '1 200 ₽', '100 000 ₽',
+        bottle_price = '{:,}'.format(db.session.get(Product, 'bottle').price).replace(',', ' ') + ' ₽'
+        for text in ('Бутылка SOPRANO', 'Максимум возможностей', bottle_price, '100 000 ₽',
                      'Оплачено', 'Неоплаченный товар', 'Не оплачено'):
             self.assertIn(text, history.text)
         self.assertNotIn('Чужая покупка', history.text)
