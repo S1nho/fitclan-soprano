@@ -1,0 +1,19 @@
+{% extends 'shop_base.html' %}
+{% block content %}
+<div class="shop-intro">
+    <h1>FIT-SHOP</h1>
+    <p>Аксессуары и инвентарь для занятий в клубе и дома.</p>
+</div>
+<div class="shop-grid">
+    {% for product in products %}
+    <article class="shop-card">
+        <p class="shop-eyebrow">{{ product.category }}</p>
+        <h2><a href="{{ url_for('product_detail', product_id=product.id) }}">{{ product.name }}</a></h2>
+        <p>{{ product.description }}</p>
+        <p class="shop-price">{{ '{:,}'.format(product.price).replace(',', ' ') }} ₽</p>
+        <a class="shop-button" href="{{ url_for('product_detail', product_id=product.id) }}">Подробнее</a>
+        <a class="shop-buy" href="{{ url_for('payment_page', plan_id='product-' ~ product.id) }}">К оформлению →</a>
+    </article>
+    {% else %}<p>Каталог пока пуст.</p>{% endfor %}
+</div>
+{% endblock %}

@@ -49,3 +49,4 @@ pip install openai
 # /logout - переход на Главную страницу
 # /payment/<plan_id> - на оформление выбранного тарифа
 # /payment_success.html - на завершение оплаты
+# /shop/<product_id> на оформление выбранного продукта

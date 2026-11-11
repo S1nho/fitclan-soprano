@@ -1,0 +1,14 @@
+{% extends 'shop_base.html' %}
+{% block title %}Заказ оформлен{% endblock %}
+{% block content %}
+<article class="shop-card shop-detail">
+    <p class="shop-eyebrow">ВАШ ЗАКАЗ</p>
+    <h1>Заказ оформлен</h1>
+    <p>{{ purchase.payment.tarif }}</p>
+    <p class="shop-price">{{ purchase.payment.summa }} ₽</p>
+    <p>Статус: {{ purchase.payment.status }}</p>
+    <p>Онлайн-оплата пока не подключена. Деньги не списаны.</p>
+    <p class="shop-order-id">Номер заказа: {{ purchase.payment_id }}</p>
+    <a class="shop-button" href="{{ url_for('shop') }}">Вернуться в магазин</a>
+</article>
+{% endblock %}

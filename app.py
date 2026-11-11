@@ -1,4 +1,7 @@
+from datetime import datetime, timedelta, timezone
+
 from flask import Flask
+from sqlalchemy import inspect, text
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager, UserMixin
@@ -39,6 +42,35 @@ class Pay(db.Model):
     summa = db.Column(db.Integer, nullable=False)
     tarif = db.Column(db.String(50), nullable=False)
     status = db.Column(db.String(50), nullable=False, default='Не оплачено')
+    # Store UTC without an offset because SQLite DateTime does not retain it.
+    created_at = db.Column(db.DateTime, nullable=True,
+                           default=lambda: datetime.now(timezone.utc).replace(tzinfo=None))
+
+    @property
+    def purchased_at_moscow(self):
+        if self.created_at is None:
+            return None
+        return self.created_at.replace(tzinfo=timezone.utc).astimezone(timezone(timedelta(hours=3)))
+
+
+class Product(db.Model):
+    __tablename__ = 'product'
+
+    id = db.Column(db.String(50), primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text, nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+    category = db.Column(db.String(50), nullable=False)
+    __table_args__ = (db.CheckConstraint('price > 0', name='product_positive_price'),)
+
+
+class ProductPurchase(db.Model):
+    __tablename__ = 'product_purchase'
+
+    payment_id = db.Column(db.String(120), db.ForeignKey('payment.id'), primary_key=True)
+    product_id = db.Column(db.String(50), db.ForeignKey('product.id'), nullable=False)
+    product = db.relationship('Product')
+    payment = db.relationship('Pay')
 
 
 class Trener(db.Model, UserMixin):
@@ -73,11 +105,49 @@ def load_user(user_id):
 
 from routes import register_routes
 
-register_routes(app, db, Client, Trener)
+register_routes(app, db, Client, Trener, Product, Pay, ProductPurchase)
+
+
+def upgrade_payment_timestamps(engine=None):
+    """Extend existing SQLite databases without inventing dates for old payments."""
+    engine = engine if engine is not None else db.engine
+    inspector = inspect(engine)
+    if inspector.has_table('payment') and 'created_at' not in {
+        column['name'] for column in inspector.get_columns('payment')
+    }:
+        with engine.begin() as connection:
+            connection.execute(text('ALTER TABLE payment ADD COLUMN created_at DATETIME'))
+
+
+@app.cli.command('upgrade-purchases')
+def upgrade_purchases_command():
+    """Add purchase timestamps to an existing database."""
+    upgrade_payment_timestamps()
+    print('Purchase timestamps are ready.')
+
+
+def init_shop():
+    """Add shop tables and missing starter items without changing existing data."""
+    from shop_catalog import PRODUCTS
+
+    upgrade_payment_timestamps()
+    db.metadata.create_all(db.engine, tables=[Product.__table__, ProductPurchase.__table__])
+    for item in PRODUCTS:
+        if db.session.get(Product, item['id']) is None:
+            db.session.add(Product(**item))
+    db.session.commit()
+
+
+@app.cli.command('init-shop')
+def init_shop_command():
+    """Initialize the shop in an existing application database."""
+    init_shop()
+    print('Магазин готов: таблицы созданы, товары добавлены.')
 
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+        init_shop()
 
         if not Client.query.first():
             from werkzeug.security import generate_password_hash

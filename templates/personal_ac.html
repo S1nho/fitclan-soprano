@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Личный кабинет</title>
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -38,10 +39,31 @@
             <span class="info-value">{{ current_user.gender }}</span>
         </div>
 
-        <div class="info-group">
-            <span class="info-label">ID аккаунта:</span>
-            <span class="info-value">{{ current_user.id }}</span>
-        </div>
+
+        <section class="purchase-history" aria-labelledby="purchase-history-title">
+            <h2 id="purchase-history-title">История покупок</h2>
+            {% if purchases %}
+            <div class="purchase-table-container">
+                <table class="purchase-table">
+                    <caption>Покупки товаров и абонементов</caption>
+                    <thead><tr><th scope="col">Дата и время (МСК)</th><th scope="col">Название</th><th scope="col">Сумма</th><th scope="col">Статус оплаты</th></tr></thead>
+                    <tbody>
+                    {% for purchase in purchases %}
+                        <tr>
+                            <td>{% if purchase.purchased_at_moscow %}<time datetime="{{ purchase.purchased_at_moscow.isoformat() }}">{{ purchase.purchased_at_moscow.strftime('%d.%m.%Y %H:%M:%S') }}</time>{% else %}Дата неизвестна{% endif %}</td>
+                            <td>{{ purchase.tarif }}</td>
+                            <td>{{ '{:,}'.format(purchase.summa).replace(',', ' ') }} ₽</td>
+                            <td>{{ purchase.status }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <p>У вас пока нет покупок.</p>
+            {% endif %}
+            <p><a href="{{ url_for('shop') }}" style="text-decoration: none; color: inherit; font-weight: bold;">Магазин</a> · <a href="{{ url_for('abonements') }}" style="text-decoration: none; color: inherit; font-weight: bold;">Абонементы</a></p>
+        </section>
 
         <div class="nav-links">
 

@@ -1,6 +1,7 @@
 import uuid
+import secrets
 
-from flask import flash, redirect, render_template, request, url_for
+from flask import abort, flash, redirect, render_template, request, session, url_for
 from flask_login import (
     current_user,
     login_required,
@@ -18,7 +19,7 @@ PLANS = {
 }
 
 
-def register_routes(app, db, client_model, trainer_model):
+def register_routes(app, db, client_model, trainer_model, product_model, payment_model, purchase_model):
     """Register the application's HTTP routes on its Flask app."""
 
     @app.route("/")
@@ -28,6 +29,16 @@ def register_routes(app, db, client_model, trainer_model):
     @app.route("/abonements")
     def abonements():
         return render_template("abonements.html")
+
+    @app.route('/shop')
+    def shop():
+        products = product_model.query.order_by(product_model.price, product_model.id).all()
+        return render_template('shop.html', products=products)
+
+    @app.route('/shop/<product_id>')
+    def product_detail(product_id):
+        product = db.get_or_404(product_model, product_id)
+        return render_template('product.html', product=product)
 
     @app.route("/directions")
     def directions():
@@ -185,7 +196,12 @@ def register_routes(app, db, client_model, trainer_model):
     @app.route("/personal_ac")
     @login_required
     def personal_ac():
-        return render_template("personal_ac.html", current_user=current_user)
+        if not isinstance(current_user._get_current_object(), client_model):
+            return redirect(url_for('trainer_ac'))
+        purchases = (payment_model.query.filter_by(email=current_user.email)
+                     .order_by(payment_model.created_at.desc().nullslast(), payment_model.id.desc())
+                     .all())
+        return render_template("personal_ac.html", current_user=current_user, purchases=purchases)
 
     @app.route("/logout")
     @login_required
@@ -193,14 +209,60 @@ def register_routes(app, db, client_model, trainer_model):
         logout_user()
         return redirect(url_for("index"))
 
-    @app.route("/payment/<plan_id>")
+    @app.route("/payment/<plan_id>", methods=['GET', 'POST'])
     @login_required
     def payment_page(plan_id):
-        plan = PLANS.get(plan_id)
-        if plan is None:
-            return "Абонемент не найден", 404
-        return render_template("payment.html", plan=plan)
+        if not isinstance(current_user._get_current_object(), client_model):
+            abort(403)
+        product = None
+        if plan_id.startswith('product-'):
+            product = db.get_or_404(product_model, plan_id[len('product-'):])
+            plan = {'name': product.name, 'price': product.price}
+        else:
+            plan = PLANS.get(plan_id)
+            if plan is None:
+                return "Абонемент не найден", 404
+        if request.method == 'POST':
+            token = session.get('shop_checkout_token')
+            if not token or not secrets.compare_digest(token, request.form.get('checkout_token', '')):
+                abort(400)
+            payment = payment_model(id=str(uuid.uuid4()), email=current_user.email,
+                                    summa=plan['price'], tarif=plan['name'], payment=True,
+                                    status='Оплачено')
+            db.session.add(payment)
+            if product:
+                db.session.add(purchase_model(product=product, payment=payment))
+            db.session.commit()
+            session.pop('shop_checkout_token', None)
+            return redirect(url_for('payment_success', payment_id=payment.id))
+        session.setdefault('shop_checkout_token', secrets.token_hex(32))
+        return render_template('payment.html', plan=plan, product=product, plan_id=plan_id,
+                               checkout_token=session['shop_checkout_token'])
+
+    @app.route('/shop/orders/<payment_id>')
+    @login_required
+    def shop_order(payment_id):
+        purchase = db.get_or_404(purchase_model, payment_id)
+        if not isinstance(current_user._get_current_object(), client_model) or purchase.payment.email != current_user.email:
+            abort(404)
+        if purchase.payment.payment:
+            return redirect(url_for('payment_success', payment_id=payment_id))
+        return render_template('shop_order.html', purchase=purchase)
 
     @app.route("/payment_success.html", methods=["GET", "POST"])
     def payment_success():
-        return render_template("payment_success.html")
+        purchase = None
+        payment = None
+        payment_id = request.args.get('payment_id')
+        if payment_id:
+            if not current_user.is_authenticated:
+                return redirect(url_for('login'))
+            payment = db.get_or_404(payment_model, payment_id)
+            if not isinstance(current_user._get_current_object(), client_model) or payment.email != current_user.email:
+                abort(404)
+            purchase = db.session.get(purchase_model, payment_id)
+            if not payment.payment:
+                if purchase:
+                    return redirect(url_for('shop_order', payment_id=payment_id))
+                abort(404)
+        return render_template("payment_success.html", purchase=purchase, payment=payment)

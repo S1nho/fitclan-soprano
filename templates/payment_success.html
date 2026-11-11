@@ -19,7 +19,7 @@
     <main class="payment-main">
         <div class="payment-header">
             <h1>Спасибо за покупку!</h1>
-            <p>Абонемент успешно оформлен.</p>
+            <p>{{ 'Товар успешно оплачен.' if purchase else 'Абонемент успешно оформлен.' }}</p>
         </div>
 
         <section class="payment-card" aria-labelledby="success-title">
@@ -29,7 +29,11 @@
             <div class="payment-card-body">
             <img src="{{ url_for('static', filename='images/icon.jpg') }}" class="icon">
             <p class="success-message">Платёж подтверждён</p>
-                <a class="pay-button" href="{{ url_for('index') }}">На главную</a>
+                {% if payment %}<p>{{ payment.tarif }} — {{ payment.summa }} ₽</p>{% endif %}
+                {% if purchase %}
+                <a class="back-link" href="{{ url_for('shop') }}">Вернуться в магазин</a>
+                {% endif %}
+                <a class="pay-button" href="{{ url_for('personal_ac') }}">На главную</a>
             </div>
         </section>
     </main>

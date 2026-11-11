@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оплата абонемента</title>
+    <title>{{ 'Оплата товара' if product else 'Оплата абонемента' }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body class="page-payment">
@@ -18,9 +18,9 @@
 
     
     <main class="payment-main">
-        <a class="back-link" href="{{ url_for('abonements') }}">Все абонементы</a>
+        <a class="back-link" href="{{ url_for('shop') if product else url_for('abonements') }}">{{ 'Магазин' if product else 'Все абонементы' }}</a>
         <div class="payment-header">
-            <h1>Оплата абонемента</h1>
+            <h1>{{ 'Оплата товара' if product else 'Оплата абонемента' }}</h1>
         </div>
         
         <section class="payment-card" aria-labelledby="plan-title">
@@ -28,9 +28,11 @@
                 <h2 id="plan-title">{{ plan.name }}</h2>
             </div>
             <div class="payment-card-body">
-                <p class="payment-price">{{ plan.price }}₽<span> за {{ plan.duration }}</span></p>
-                <form action="{{ url_for('payment_success') }}" method="post">
-                    <button class="pay-button" type="submit">Оплатить абонемент</button>
+                <p class="payment-price">{{ plan.price }}₽{% if not product %}<span> за {{ plan.duration }}</span>{% endif %}</p>
+                {% if product %}<p>{{ product.description }}</p>{% endif %}
+                <form action="{{ url_for('payment_page', plan_id=plan_id) }}" method="post">
+                    <input type="hidden" name="checkout_token" value="{{ checkout_token }}">
+                    <button class="pay-button" type="submit">{{ 'Оплатить товар' if product else 'Оплатить абонемент' }}</button>
                 </form>
             </div>
         </section>

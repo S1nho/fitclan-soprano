@@ -1156,6 +1156,7 @@ body.page-payment .icon {
         padding: 0;
         font-family: 'Montserrat', sans-serif;
         display: flex;
+        text-decoration: none;
         flex-direction: column;
         align-items: center;
         min-height: 100vh;
@@ -1206,12 +1207,17 @@ body.page-payment .icon {
     color: #113462;
     padding: 60px;
     margin-top:70px;
+    text-decoration: none;
     border-radius: 16px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 500px;
 }
 
+
+body.page-personal-ac .profile-container {
+    text-decoration: none;
+}
 
 
 body.page-personal-ac .profile-container h2 {
@@ -1258,6 +1264,24 @@ body.page-personal-ac .info-value {
 }
 
 
+
+body.page-personal-ac .purchase-history {
+    margin-top: 36px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 28px;
+}
+body.page-personal-ac .purchase-history h2 { font-size: 22px; }
+body.page-personal-ac .purchase-table-container { overflow-x: auto; }
+body.page-personal-ac .purchase-table { width: 100%; border-collapse: collapse; }
+body.page-personal-ac .purchase-table caption { text-align: left; padding-bottom: 16px; color: #526580; }
+body.page-personal-ac .purchase-table th,
+body.page-personal-ac .purchase-table td { text-align: left; padding: 12px 8px; border-bottom: 1px solid #e2e8f0; }
+body.page-personal-ac .purchase-table td:nth-child(2) { overflow-wrap: anywhere; }
+body.page-personal-ac .purchase-table td:nth-child(3) { white-space: nowrap; }
+@media (max-width: 600px) {
+    body.page-personal-ac .profile-container { box-sizing: border-box; max-width: 100%; padding: 24px 16px; }
+    body.page-personal-ac .purchase-table { font-size: 14px; }
+}
 
 body.page-personal-ac .nav-links {
     display: flex;
@@ -1955,6 +1979,7 @@ body.page-payment .header,
 body.page-personal-ac .header,
 body.page-registration .header,
 body.page-schedule .header,
+body.page-shop .header,
 body.page-trainers .header {
     width: 100%;
     height: 90px;
@@ -1976,6 +2001,7 @@ body.page-payment .header .header-container,
 body.page-personal-ac .header .header-container,
 body.page-registration .header .header-container,
 body.page-schedule .header .header-container,
+body.page-shop .header .header-container,
 body.page-trainers .header .header-container {
     width: 100%;
     max-width: 1200px;
@@ -1994,6 +2020,7 @@ body.page-payment .header .hero-title,
 body.page-personal-ac .header .hero-title,
 body.page-registration .header .hero-title,
 body.page-schedule .header .hero-title,
+body.page-shop .header .hero-title,
 body.page-trainers .header .hero-title {
     margin: 0;
     padding: 0;
@@ -2014,6 +2041,7 @@ body.page-payment .header button,
 body.page-personal-ac .header button,
 body.page-registration .header button,
 body.page-schedule .header button,
+body.page-shop .header button,
 body.page-trainers .header button {
     width: fit-content;
     height: auto;
@@ -2040,4 +2068,29 @@ body.page-auth .wrapper,
 body.page-registration .wrapper {
     margin: auto;
 }
+
+
+/* Shop styles */
+body.page-shop { margin: 0; background: #1a4375; color: #f8f9fa; font-family: 'Montserrat', sans-serif; }
+.page-shop * { box-sizing: border-box; }
+.page-shop a { color: inherit; }
+.shop-main { max-width: 1208px; margin: auto; padding: 48px 24px 72px; }
+.shop-intro { max-width: 680px; margin-bottom: 36px; }
+.shop-intro h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.15; margin: 16px 0; }
+.shop-eyebrow { letter-spacing: 2px; font-size: 12px; color: #a8cceb; text-transform: uppercase; }
+.shop-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.shop-card { padding: 28px; background: #122e51; border: 1px solid #547799; border-radius: 12px; display: flex; flex-direction: column; align-items: flex-start; }
+.shop-card h2 { font-size: 24px; margin: 12px 0; }
+.shop-card h2 a { text-decoration: none; }
+.shop-card p { line-height: 1.6; }
+.shop-price { font-size: 30px; font-weight: 700; margin-top: auto; padding-top: 20px; }
+.shop-button { display: inline-block; text-decoration: none; background: #f8f9fa; color: #122e51 !important; padding: 14px 22px; border-radius: 6px; font-weight: 700; }
+.shop-buy { margin-top: 18px; }
+.shop-back { display: inline-block; margin-bottom: 24px; }
+.shop-detail { max-width: 740px; margin: 0 auto; }
+.shop-detail h1 { font-size: clamp(28px, 5vw, 40px); }
+.shop-order-id { overflow-wrap: anywhere; }
+.page-shop a:focus-visible { outline: 3px solid #a8cceb; outline-offset: 5px; }
+@media (max-width: 960px) { .shop-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .shop-grid { grid-template-columns: 1fr; } .shop-card { padding: 24px; } }
 
