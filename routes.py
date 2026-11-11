@@ -1,3 +1,4 @@
+import re  # ДОБАВЛЕНО: модуль регулярных выражений для строгой валидации
 import uuid
 import secrets
 
@@ -18,8 +19,13 @@ PLANS = {
     "year": {"name": "Максимум возможностей", "price": 100_000, "duration": "1 год"},
 }
 
+EMAIL_REGEX = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+NAME_REGEX = r"^[А-Яа-яЁё\s-]{2,50}$"
+PASSWORD_REGEX = r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+
 
 def register_routes(app, db, client_model, trainer_model, product_model, payment_model, purchase_model):
+
     """Register the application's HTTP routes on its Flask app."""
 
     @app.route("/")
@@ -51,7 +57,6 @@ def register_routes(app, db, client_model, trainer_model, product_model, payment
     @app.route("/schedule")
     def schedule():
         return render_template("schedule.html")
-
 
     @app.route("/calculators", methods=["GET", "POST"])
     def calculator():
@@ -114,7 +119,6 @@ def register_routes(app, db, client_model, trainer_model, product_model, payment
             return redirect(url_for("personal_ac"))
         return redirect(url_for("register"))
 
-
     @app.route("/register", methods=["GET", "POST"])
     def register():
         if current_user.is_authenticated:
@@ -123,32 +127,43 @@ def register_routes(app, db, client_model, trainer_model, product_model, payment
             return redirect(url_for("personal_ac"))
 
         if request.method == "POST":
-            role = request.form.get("role") 
-            email = request.form.get("email")
-            password = request.form.get("password")
+            role = request.form.get("role", "client")
+
+            email = request.form.get("email", "").strip().lower()
+            password = request.form.get("password", "")
+
+
+            if not re.match(EMAIL_REGEX, email):
+                flash("Некорректный формат электронной почты!", "error")
+                return redirect(url_for("register"))
 
             if role == "trainer":
-                # Ищем тренера в вашей таблице Trener по email
+
                 trainer = trainer_model.query.filter_by(email_trainer=email).first()
 
-                # Проверяем пароль тренера (используем password_trainers из вашей модели)
-                if trainer and trainer.password_trainers == password:
-                    
-                    # Переопределяем get_id под ваше реальное поле id_trainers с буквой s
-                    trainer.get_id = lambda: str(trainer.id_trainers)
-                    
-                    login_user(trainer)
-                    return redirect(url_for("trainer_ac"))  # Перекидываем в кабинет тренера
 
-                # Если данные не подошли
+                if trainer and trainer.password_trainers == password:
+                    trainer.get_id = lambda: str(trainer.id_trainers)
+                    login_user(trainer)
+                    return redirect(url_for("trainer_ac"))
+
                 flash("Неверный email или пароль тренера", "error")
                 return redirect(url_for("register"))
 
 
-            # --- ЕСЛИ ВЕРСИЯ ДЛЯ КЛИЕНТА (Обычная регистрация) ---
             else:
-                name = request.form.get("name")
+                name = request.form.get("name", "").strip()
                 gender = request.form.get("gender")
+
+
+                if not re.match(NAME_REGEX, name):
+                    flash("Имя должно содержать от 2 до 50 русских букв!", "error")
+                    return redirect(url_for("register"))
+
+
+                if not re.match(PASSWORD_REGEX, password):
+                    flash("Пароль должен быть от 8 символов (латинская буква + цифра)!", "error")
+                    return redirect(url_for("register"))
 
                 user_exists = client_model.query.filter_by(email=email).first()
                 if user_exists:
@@ -175,8 +190,14 @@ def register_routes(app, db, client_model, trainer_model, product_model, payment
             return redirect(url_for("personal_ac"))
 
         if request.method == "POST":
-            email = request.form.get("email")
-            password = request.form.get("password")
+
+            email = request.form.get("email", "").strip().lower()
+            password = request.form.get("password", "")
+
+            if not re.match(EMAIL_REGEX, email):
+                flash("Некорректный формат электронной почты!", "error")
+                return redirect(url_for("login"))
+
             client = client_model.query.filter_by(email=email).first()
 
             if client and check_password_hash(client.password, password):
